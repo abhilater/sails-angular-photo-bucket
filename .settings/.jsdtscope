@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="node_modules/node-gyp/node_modules/request/node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/test/|node_modules/node-gyp/node_modules/request/node_modules/aws-sign2/|node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/dist/|node_modules/grunt/node_modules/glob/test/|node_modules/node-gyp/node_modules/request/node_modules/tough-cookie/|node_modules/ejs/support/|node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/ctype/tst/ctio/int/|node_modules/optimist/test/_/|node_modules/node-gyp/node_modules/which/|node_modules/node-gyp/node_modules/npmlog/node_modules/ansi/examples/|node_modules/grunt/test/fixtures/|node_modules/sails-postgresql/node_modules/async/lib/|node_modules/node-gyp/node_modules/request/node_modules/node-uuid/benchmark/|node_modules/grunt/node_modules/dateformat/lib/|node_modules/grunt/test/fixtures/files/dist/|node_modules/grunt/node_modules/glob/node_modules/inherits/|node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/asn1/tst/ber/|node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/ctype/tst/ctio/float/|node_modules/node-gyp/node_modules/minimatch/node_modules/sigmund/test/|node_modules/node-gyp/node_modules/request/node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/lib/|node_modules/node-gyp/node_modules/request/node_modules/hawk/lib/|node_modules/grunt/|node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/sntp/|node_modules/node-gyp/node_modules/request/node_modules/json-stringify-safe/|node_modules/node-gyp/node_modules/osenv/test/|node_modules/node-gyp/node_modules/nopt/bin/|node_modules/grunt/node_modules/rimraf/node_modules/graceful-fs/|node_modules/sails-postgresql/node_modules/pg/test/unit/copystream/|node_modules/node-gyp/node_modules/mkdirp/test/|node_modules/grunt/test/grunt/|node_modules/grunt/node_modules/nopt/examples/|node_modules/node-gyp/node_modules/request/node_modules/tough-cookie/node_modules/punycode/|node_modules/sails-postgresql/node_modules/pg/test/integration/|node_modules/grunt/node_modules/rimraf/node_modules/graceful-fs/test/|node_modules/grunt/node_modules/glob/node_modules/graceful-fs/test/|node_modules/node-gyp/node_modules/request/|node_modules/node-gyp/node_modules/minimatch/node_modules/sigmund/|node_modules/node-gyp/node_modules/tar/node_modules/block-stream/|node_modules/node-gyp/node_modules/request/node_modules/hawk/example/|node_modules/sails-disk/node_modules/lodash/dist/|node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/sntp/lib/|node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/ctype/tst/ctf/|node_modules/node-gyp/node_modules/mkdirp/examples/|node_modules/node-gyp/lib/|node_modules/grunt/node_modules/rimraf/|node_modules/grunt/node_modules/nopt/node_modules/abbrev/lib/|node_modules/sails-postgresql/node_modules/pg/node_modules/pgpass/node_modules/split/node_modules/through/|node_modules/grunt/node_modules/underscore.string/dist/|node_modules/node-gyp/node_modules/request/node_modules/qs/|node_modules/grunt/node_modules/findup-sync/lib/|node_modules/node-gyp/node_modules/tar/|node_modules/grunt/node_modules/dateformat/test/|node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/boom/test/|node_modules/node-gyp/node_modules/tar/lib/|node_modules/optimist/node_modules/wordwrap/test/|node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/hoek/lib/|node_modules/node-gyp/node_modules/npmlog/node_modules/ansi/examples/beep/|node_modules/grunt/node_modules/js-yaml/lib/js-yaml/|node_modules/sails-disk/node_modules/fs-extra/node_modules/mkdirp/|node_modules/sails-postgresql/node_modules/pg/lib/types/|node_modules/sails-postgresql/test/load/|node_modules/node-gyp/node_modules/npmlog/node_modules/ansi/examples/clear/|node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/hoek/test/modules/|node_modules/grunt/lib/|node_modules/node-gyp/node_modules/tar/test/|node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/ctype/tst/ctype/|node_modules/node-gyp/node_modules/npmlog/node_modules/ansi/examples/progress/|node_modules/node-gyp/node_modules/glob/node_modules/inherits/|node_modules/sails-postgresql/node_modules/underscore/|node_modules/sails-disk/node_modules/fs-extra/node_modules/mkdirp/test/|node_modules/node-gyp/node_modules/graceful-fs/|node_modules/grunt/node_modules/colors/themes/|node_modules/ejs/test/|.tmp/public/js/|node_modules/grunt/node_modules/js-yaml/node_modules/esprima/bin/|node_modules/sails-postgresql/node_modules/pg/node_modules/generic-pool/lib/|node_modules/node-gyp/node_modules/request/node_modules/forever-agent/|node_modules/grunt/node_modules/findup-sync/|node_modules/grunt/node_modules/hooker/dist/|node_modules/sails-postgresql/node_modules/pg/test/unit/pool/|node_modules/sails-disk/node_modules/fs-extra/node_modules/ncp/test/|node_modules/node-gyp/node_modules/request/node_modules/oauth-sign/|node_modules/grunt/lib/util/|node_modules/sails-postgresql/node_modules/pg/node_modules/pgpass/test/|node_modules/node-gyp/node_modules/npmlog/|node_modules/sails-postgresql/node_modules/pg/node_modules/pgpass/node_modules/split/examples/|node_modules/node-gyp/node_modules/nopt/examples/|node_modules/grunt/node_modules/minimatch/|node_modules/grunt/node_modules/coffee-script/lib/coffee-script/|node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/action/|node_modules/optimist/node_modules/wordwrap/|node_modules/sails-postgresql/node_modules/pg/test/unit/connection-parameters/|node_modules/node-gyp/node_modules/request/node_modules/mime/|node_modules/grunt/node_modules/async/lib/|node_modules/node-gyp/node_modules/glob/|node_modules/grunt/node_modules/js-yaml/lib/js-yaml/type/|node_modules/node-gyp/node_modules/tar/node_modules/block-stream/test/|node_modules/node-gyp/node_modules/request/node_modules/http-signature/lib/|node_modules/optimist/|node_modules/sails-postgresql/test/integration/|node_modules/node-gyp/node_modules/request/node_modules/form-data/node_modules/async/lib/|assets/js/|node_modules/grunt/node_modules/js-yaml/lib/js-yaml/type/js/|node_modules/node-gyp/node_modules/request/node_modules/tough-cookie/lib/|api/policies/|node_modules/sails-disk/node_modules/waterline-criteria/test/|node_modules/grunt/node_modules/js-yaml/bin/|node_modules/grunt/node_modules/js-yaml/node_modules/argparse/examples/|node_modules/sails-postgresql/node_modules/pg/test/native/|node_modules/node-gyp/node_modules/request/node_modules/hawk/test/|node_modules/node-gyp/node_modules/minimatch/node_modules/lru-cache/test/|node_modules/node-gyp/node_modules/request/node_modules/node-uuid/test/|node_modules/sails-postgresql/node_modules/pg/test/unit/client/|node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore/|node_modules/node-gyp/node_modules/minimatch/node_modules/lru-cache/lib/|node_modules/node-gyp/node_modules/tar/node_modules/block-stream/bench/|node_modules/grunt/node_modules/glob/examples/|api/controllers/|node_modules/node-gyp/node_modules/fstream/|node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/asn1/lib/ber/|node_modules/optimist/node_modules/wordwrap/example/|node_modules/sails-postgresql/node_modules/pg/test/integration/gh-issues/|node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/help/|node_modules/sails-postgresql/node_modules/pg/test/integration/connection/|node_modules/sails-postgresql/test/unit/support/|node_modules/sails-postgresql/node_modules/pg/node_modules/generic-pool/test/|node_modules/grunt/node_modules/findup-sync/node_modules/lodash/dist/|node_modules/sails-postgresql/node_modules/pg/benchmark/|node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/assert-plus/|node_modules/sails-disk/test/|node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/ctype/|node_modules/node-gyp/node_modules/fstream/examples/|node_modules/sails-postgresql/test/unit/|config/|node_modules/grunt/node_modules/underscore.string/lib/|node_modules/node-gyp/node_modules/request/node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/test/integration/|node_modules/grunt/node_modules/iconv-lite/generation/|node_modules/grunt/node_modules/glob/node_modules/graceful-fs/|node_modules/sails-postgresql/node_modules/pg/test/integration/client/|node_modules/ejs/|node_modules/sails-disk/node_modules/fs-extra/node_modules/ncp/lib/|node_modules/grunt/node_modules/js-yaml/node_modules/esprima/test/|node_modules/grunt/node_modules/glob/|node_modules/sails-postgresql/node_modules/pg/lib/native/|node_modules/node-gyp/node_modules/glob/test/|node_modules/node-gyp/node_modules/rimraf/test/|node_modules/sails-postgresql/node_modules/pg/script/|node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/argument/|node_modules/grunt/node_modules/js-yaml/|node_modules/node-gyp/node_modules/request/node_modules/form-data/node_modules/combined-stream/test/|node_modules/sails-disk/|node_modules/grunt/node_modules/rimraf/test/|node_modules/grunt/node_modules/iconv-lite/|node_modules/grunt/node_modules/underscore.string/test/test_underscore/|node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/sntp/examples/|node_modules/grunt/node_modules/eventemitter2/lib/|node_modules/sails-postgresql/lib/|node_modules/node-gyp/node_modules/request/node_modules/hawk/|node_modules/sails-disk/node_modules/fs-extra/node_modules/jsonfile/lib/|node_modules/grunt/node_modules/js-yaml/node_modules/esprima/|node_modules/grunt/node_modules/iconv-lite/encodings/|node_modules/node-gyp/node_modules/glob/examples/|node_modules/node-gyp/node_modules/request/node_modules/tunnel-agent/|node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/|node_modules/sails-disk/node_modules/fs-extra/node_modules/rimraf/test/|node_modules/node-gyp/node_modules/npmlog/test/|node_modules/node-gyp/node_modules/semver/|node_modules/node-gyp/node_modules/fstream/lib/|node_modules/grunt/node_modules/underscore.string/test/test_underscore/vendor/|node_modules/sails-disk/node_modules/fs-extra/lib/|node_modules/grunt/node_modules/which/|node_modules/node-gyp/node_modules/request/lib/|node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/cryptiles/|node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/ctype/tst/ctio/uint/|node_modules/node-gyp/node_modules/mkdirp/|node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/action/store/|api/models/|node_modules/ejs/examples/|node_modules/node-gyp/node_modules/nopt/lib/|node_modules/grunt/node_modules/findup-sync/test/|node_modules/sails-postgresql/node_modules/pg/node_modules/pgpass/lib/|node_modules/sails-postgresql/node_modules/pg/node_modules/nan/|node_modules/node-gyp/bin/|node_modules/node-gyp/node_modules/tar/examples/|node_modules/sails-postgresql/test/load/support/|node_modules/sails-postgresql/node_modules/pg/node_modules/buffer-writer/|node_modules/node-gyp/node_modules/request/node_modules/form-data/node_modules/combined-stream/test/integration/|node_modules/grunt/node_modules/js-yaml/node_modules/argparse/|node_modules/optimist/example/|node_modules/sails-postgresql/node_modules/pg/test/integration/connection-pool/|node_modules/grunt/node_modules/minimatch/test/|node_modules/node-gyp/node_modules/nopt/node_modules/abbrev/lib/|node_modules/node-gyp/node_modules/fstream/node_modules/inherits/|node_modules/grunt/node_modules/lodash/|node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/test/|node_modules/grunt/lib/grunt/|node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/lib/|node_modules/node-gyp/node_modules/graceful-fs/test/|node_modules/ejs/lib/|node_modules/grunt/node_modules/hooker/test/|node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/boom/lib/|node_modules/grunt/node_modules/minimatch/node_modules/sigmund/|node_modules/grunt/node_modules/js-yaml/lib/|node_modules/grunt/node_modules/nopt/lib/|node_modules/grunt/node_modules/minimatch/node_modules/sigmund/test/|node_modules/grunt/node_modules/minimatch/node_modules/lru-cache/lib/|node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/hoek/|node_modules/sails-postgresql/node_modules/pg/node_modules/buffer-writer/benchmark/|node_modules/grunt/node_modules/colors/|node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/test/test_underscore/vendor/|node_modules/sails-postgresql/node_modules/pg/lib/|node_modules/sails-postgresql/node_modules/pg/test/unit/|node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/asn1/lib/|node_modules/sails-disk/node_modules/fs-extra/node_modules/mkdirp/examples/|node_modules/node-gyp/node_modules/minimatch/test/|node_modules/sails-postgresql/node_modules/pg/node_modules/buffer-writer/test/|node_modules/grunt/node_modules/iconv-lite/test/|node_modules/sails-disk/node_modules/fs-extra/node_modules/rimraf/|node_modules/grunt/node_modules/hooker/lib/|node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/cryptiles/test/|node_modules/grunt/test/fixtures/files/src/|node_modules/node-gyp/node_modules/minimatch/|node_modules/grunt/test/util/|node_modules/node-gyp/node_modules/request/node_modules/form-data/node_modules/combined-stream/lib/|node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/sntp/test/|node_modules/sails-postgresql/node_modules/pg/node_modules/pgpass/node_modules/split/test/|node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/test/test_underscore/|node_modules/grunt/node_modules/nopt/bin/|node_modules/grunt/node_modules/iconv-lite/encodings/table/|node_modules/node-gyp/node_modules/npmlog/node_modules/ansi/lib/|node_modules/sails-postgresql/node_modules/pg/test/|node_modules/node-gyp/node_modules/request/node_modules/form-data/lib/|node_modules/grunt/test/fixtures/expand/js/|node_modules/grunt/node_modules/js-yaml/examples/|node_modules/node-gyp/node_modules/rimraf/|node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/action/append/|node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/cryptiles/lib/|node_modules/node-gyp/node_modules/semver/test/|node_modules/sails-postgresql/node_modules/pg/node_modules/pgpass/node_modules/split/|node_modules/sails-disk/node_modules/waterline-criteria/|node_modules/node-gyp/node_modules/tar/node_modules/inherits/|node_modules/node-gyp/node_modules/osenv/|node_modules/grunt/test/gruntfile/|node_modules/grunt/node_modules/underscore.string/test/|node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/boom/|node_modules/grunt/node_modules/hooker/|node_modules/sails-postgresql/node_modules/pg/test/unit/connection/|node_modules/grunt/node_modules/eventemitter2/|node_modules/sails-disk/node_modules/lodash/|node_modules/sails-postgresql/node_modules/pg/node_modules/pgpass/node_modules/split/node_modules/through/test/|node_modules/node-gyp/node_modules/nopt/test/|node_modules/grunt/node_modules/minimatch/node_modules/lru-cache/test/|node_modules/optimist/test/|node_modules/grunt/node_modules/js-yaml/lib/js-yaml/schema/|node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/hoek/test/|node_modules/grunt/node_modules/async/|node_modules/node-gyp/node_modules/request/node_modules/node-uuid/" kind="src" path=""/>
+	<classpathentry kind="src" path=".tmp/public/js"/>
+	<classpathentry kind="src" path="api/controllers"/>
+	<classpathentry kind="src" path="api/models"/>
+	<classpathentry kind="src" path="api/policies"/>
+	<classpathentry kind="src" path="assets/js"/>
+	<classpathentry kind="src" path="config"/>
+	<classpathentry excluding="support/|test/|examples/|lib/" kind="src" path="node_modules/ejs"/>
+	<classpathentry kind="src" path="node_modules/ejs/examples"/>
+	<classpathentry kind="src" path="node_modules/ejs/lib"/>
+	<classpathentry kind="src" path="node_modules/ejs/support"/>
+	<classpathentry kind="src" path="node_modules/ejs/test"/>
+	<classpathentry excluding="node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/dist/|node_modules/glob/test/|test/fixtures/|node_modules/dateformat/lib/|test/fixtures/files/dist/|node_modules/glob/node_modules/inherits/|node_modules/rimraf/node_modules/graceful-fs/|test/grunt/|node_modules/nopt/examples/|node_modules/rimraf/node_modules/graceful-fs/test/|node_modules/glob/node_modules/graceful-fs/test/|node_modules/rimraf/|node_modules/nopt/node_modules/abbrev/lib/|node_modules/underscore.string/dist/|node_modules/findup-sync/lib/|node_modules/dateformat/test/|node_modules/js-yaml/lib/js-yaml/|lib/|node_modules/colors/themes/|node_modules/js-yaml/node_modules/esprima/bin/|node_modules/findup-sync/|node_modules/hooker/dist/|lib/util/|node_modules/minimatch/|node_modules/coffee-script/lib/coffee-script/|node_modules/js-yaml/node_modules/argparse/lib/action/|node_modules/async/lib/|node_modules/js-yaml/lib/js-yaml/type/|node_modules/js-yaml/lib/js-yaml/type/js/|node_modules/js-yaml/bin/|node_modules/js-yaml/node_modules/argparse/examples/|node_modules/js-yaml/node_modules/argparse/node_modules/underscore/|node_modules/glob/examples/|node_modules/js-yaml/node_modules/argparse/lib/help/|node_modules/findup-sync/node_modules/lodash/dist/|node_modules/underscore.string/lib/|node_modules/iconv-lite/generation/|node_modules/glob/node_modules/graceful-fs/|node_modules/js-yaml/node_modules/esprima/test/|node_modules/glob/|node_modules/js-yaml/node_modules/argparse/lib/argument/|node_modules/js-yaml/|node_modules/rimraf/test/|node_modules/iconv-lite/|node_modules/underscore.string/test/test_underscore/|node_modules/eventemitter2/lib/|node_modules/js-yaml/node_modules/esprima/|node_modules/iconv-lite/encodings/|node_modules/js-yaml/node_modules/argparse/lib/|node_modules/underscore.string/test/test_underscore/vendor/|node_modules/which/|node_modules/js-yaml/node_modules/argparse/lib/action/store/|node_modules/findup-sync/test/|node_modules/js-yaml/node_modules/argparse/|node_modules/minimatch/test/|node_modules/lodash/|node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/test/|lib/grunt/|node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/lib/|node_modules/hooker/test/|node_modules/minimatch/node_modules/sigmund/|node_modules/js-yaml/lib/|node_modules/nopt/lib/|node_modules/minimatch/node_modules/sigmund/test/|node_modules/minimatch/node_modules/lru-cache/lib/|node_modules/colors/|node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/test/test_underscore/vendor/|node_modules/iconv-lite/test/|node_modules/hooker/lib/|test/fixtures/files/src/|test/util/|node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/test/test_underscore/|node_modules/nopt/bin/|node_modules/iconv-lite/encodings/table/|test/fixtures/expand/js/|node_modules/js-yaml/examples/|node_modules/js-yaml/node_modules/argparse/lib/action/append/|test/gruntfile/|node_modules/underscore.string/test/|node_modules/hooker/|node_modules/eventemitter2/|node_modules/minimatch/node_modules/lru-cache/test/|node_modules/js-yaml/lib/js-yaml/schema/|node_modules/async/" kind="src" path="node_modules/grunt"/>
+	<classpathentry excluding="util/|grunt/" kind="src" path="node_modules/grunt/lib"/>
+	<classpathentry kind="src" path="node_modules/grunt/lib/grunt"/>
+	<classpathentry kind="src" path="node_modules/grunt/lib/util"/>
+	<classpathentry excluding="lib/" kind="src" path="node_modules/grunt/node_modules/async"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/async/lib"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/coffee-script/lib/coffee-script"/>
+	<classpathentry excluding="themes/" kind="src" path="node_modules/grunt/node_modules/colors"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/colors/themes"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/dateformat/lib"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/dateformat/test"/>
+	<classpathentry excluding="lib/" kind="src" path="node_modules/grunt/node_modules/eventemitter2"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/eventemitter2/lib"/>
+	<classpathentry excluding="lib/|node_modules/lodash/dist/|test/" kind="src" path="node_modules/grunt/node_modules/findup-sync"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/findup-sync/lib"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/findup-sync/node_modules/lodash/dist"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/findup-sync/test"/>
+	<classpathentry excluding="test/|node_modules/inherits/|node_modules/graceful-fs/test/|examples/|node_modules/graceful-fs/" kind="src" path="node_modules/grunt/node_modules/glob"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/glob/examples"/>
+	<classpathentry excluding="test/" kind="src" path="node_modules/grunt/node_modules/glob/node_modules/graceful-fs"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/glob/node_modules/graceful-fs/test"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/glob/node_modules/inherits"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/glob/test"/>
+	<classpathentry excluding="dist/|test/|lib/" kind="src" path="node_modules/grunt/node_modules/hooker"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/hooker/dist"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/hooker/lib"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/hooker/test"/>
+	<classpathentry excluding="generation/|encodings/|test/|encodings/table/" kind="src" path="node_modules/grunt/node_modules/iconv-lite"/>
+	<classpathentry excluding="table/" kind="src" path="node_modules/grunt/node_modules/iconv-lite/encodings"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/iconv-lite/encodings/table"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/iconv-lite/generation"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/iconv-lite/test"/>
+	<classpathentry excluding="node_modules/argparse/node_modules/underscore.string/dist/|lib/js-yaml/|node_modules/esprima/bin/|node_modules/argparse/lib/action/|lib/js-yaml/type/|lib/js-yaml/type/js/|bin/|node_modules/argparse/examples/|node_modules/argparse/node_modules/underscore/|node_modules/argparse/lib/help/|node_modules/esprima/test/|node_modules/argparse/lib/argument/|node_modules/esprima/|node_modules/argparse/lib/|node_modules/argparse/lib/action/store/|node_modules/argparse/|node_modules/argparse/node_modules/underscore.string/test/|node_modules/argparse/node_modules/underscore.string/lib/|lib/|node_modules/argparse/node_modules/underscore.string/test/test_underscore/vendor/|node_modules/argparse/node_modules/underscore.string/test/test_underscore/|examples/|node_modules/argparse/lib/action/append/|lib/js-yaml/schema/" kind="src" path="node_modules/grunt/node_modules/js-yaml"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/bin"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/examples"/>
+	<classpathentry excluding="js-yaml/|js-yaml/type/|js-yaml/type/js/|js-yaml/schema/" kind="src" path="node_modules/grunt/node_modules/js-yaml/lib"/>
+	<classpathentry excluding="type/|type/js/|schema/" kind="src" path="node_modules/grunt/node_modules/js-yaml/lib/js-yaml"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/lib/js-yaml/schema"/>
+	<classpathentry excluding="js/" kind="src" path="node_modules/grunt/node_modules/js-yaml/lib/js-yaml/type"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/lib/js-yaml/type/js"/>
+	<classpathentry excluding="node_modules/underscore.string/dist/|lib/action/|examples/|node_modules/underscore/|lib/help/|lib/argument/|lib/|lib/action/store/|node_modules/underscore.string/test/|node_modules/underscore.string/lib/|node_modules/underscore.string/test/test_underscore/vendor/|node_modules/underscore.string/test/test_underscore/|lib/action/append/" kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/argparse"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/argparse/examples"/>
+	<classpathentry excluding="action/|help/|argument/|action/store/|action/append/" kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib"/>
+	<classpathentry excluding="store/|append/" kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/action"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/action/append"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/action/store"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/argument"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/help"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/dist"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/lib"/>
+	<classpathentry excluding="test_underscore/vendor/|test_underscore/" kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/test"/>
+	<classpathentry excluding="vendor/" kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/test/test_underscore"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/test/test_underscore/vendor"/>
+	<classpathentry excluding="bin/|test/" kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/esprima"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/esprima/bin"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/js-yaml/node_modules/esprima/test"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/lodash"/>
+	<classpathentry excluding="test/|node_modules/sigmund/|node_modules/sigmund/test/|node_modules/lru-cache/lib/|node_modules/lru-cache/test/" kind="src" path="node_modules/grunt/node_modules/minimatch"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/minimatch/node_modules/lru-cache/lib"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/minimatch/node_modules/lru-cache/test"/>
+	<classpathentry excluding="test/" kind="src" path="node_modules/grunt/node_modules/minimatch/node_modules/sigmund"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/minimatch/node_modules/sigmund/test"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/minimatch/test"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/nopt/bin"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/nopt/examples"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/nopt/lib"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/nopt/node_modules/abbrev/lib"/>
+	<classpathentry excluding="node_modules/graceful-fs/|node_modules/graceful-fs/test/|test/" kind="src" path="node_modules/grunt/node_modules/rimraf"/>
+	<classpathentry excluding="test/" kind="src" path="node_modules/grunt/node_modules/rimraf/node_modules/graceful-fs"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/rimraf/node_modules/graceful-fs/test"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/rimraf/test"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/underscore.string/dist"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/underscore.string/lib"/>
+	<classpathentry excluding="test_underscore/|test_underscore/vendor/" kind="src" path="node_modules/grunt/node_modules/underscore.string/test"/>
+	<classpathentry excluding="vendor/" kind="src" path="node_modules/grunt/node_modules/underscore.string/test/test_underscore"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/underscore.string/test/test_underscore/vendor"/>
+	<classpathentry kind="src" path="node_modules/grunt/node_modules/which"/>
+	<classpathentry excluding="files/dist/|files/src/|expand/js/" kind="src" path="node_modules/grunt/test/fixtures"/>
+	<classpathentry kind="src" path="node_modules/grunt/test/fixtures/expand/js"/>
+	<classpathentry kind="src" path="node_modules/grunt/test/fixtures/files/dist"/>
+	<classpathentry kind="src" path="node_modules/grunt/test/fixtures/files/src"/>
+	<classpathentry kind="src" path="node_modules/grunt/test/grunt"/>
+	<classpathentry kind="src" path="node_modules/grunt/test/gruntfile"/>
+	<classpathentry kind="src" path="node_modules/grunt/test/util"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/bin"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/lib"/>
+	<classpathentry excluding="examples/|lib/|node_modules/inherits/" kind="src" path="node_modules/node-gyp/node_modules/fstream"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/fstream/examples"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/fstream/lib"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/fstream/node_modules/inherits"/>
+	<classpathentry excluding="node_modules/inherits/|test/|examples/" kind="src" path="node_modules/node-gyp/node_modules/glob"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/glob/examples"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/glob/node_modules/inherits"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/glob/test"/>
+	<classpathentry excluding="test/" kind="src" path="node_modules/node-gyp/node_modules/graceful-fs"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/graceful-fs/test"/>
+	<classpathentry excluding="node_modules/sigmund/test/|node_modules/sigmund/|node_modules/lru-cache/test/|node_modules/lru-cache/lib/|test/" kind="src" path="node_modules/node-gyp/node_modules/minimatch"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/minimatch/node_modules/lru-cache/lib"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/minimatch/node_modules/lru-cache/test"/>
+	<classpathentry excluding="test/" kind="src" path="node_modules/node-gyp/node_modules/minimatch/node_modules/sigmund"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/minimatch/node_modules/sigmund/test"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/minimatch/test"/>
+	<classpathentry excluding="test/|examples/" kind="src" path="node_modules/node-gyp/node_modules/mkdirp"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/mkdirp/examples"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/mkdirp/test"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/nopt/bin"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/nopt/examples"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/nopt/lib"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/nopt/node_modules/abbrev/lib"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/nopt/test"/>
+	<classpathentry excluding="node_modules/ansi/examples/|node_modules/ansi/examples/beep/|node_modules/ansi/examples/clear/|node_modules/ansi/examples/progress/|test/|node_modules/ansi/lib/" kind="src" path="node_modules/node-gyp/node_modules/npmlog"/>
+	<classpathentry excluding="beep/|clear/|progress/" kind="src" path="node_modules/node-gyp/node_modules/npmlog/node_modules/ansi/examples"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/npmlog/node_modules/ansi/examples/beep"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/npmlog/node_modules/ansi/examples/clear"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/npmlog/node_modules/ansi/examples/progress"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/npmlog/node_modules/ansi/lib"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/npmlog/test"/>
+	<classpathentry excluding="test/" kind="src" path="node_modules/node-gyp/node_modules/osenv"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/osenv/test"/>
+	<classpathentry excluding="node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/test/|node_modules/aws-sign2/|node_modules/tough-cookie/|node_modules/http-signature/node_modules/ctype/tst/ctio/int/|node_modules/node-uuid/benchmark/|node_modules/http-signature/node_modules/asn1/tst/ber/|node_modules/http-signature/node_modules/ctype/tst/ctio/float/|node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/lib/|node_modules/hawk/lib/|node_modules/hawk/node_modules/sntp/|node_modules/json-stringify-safe/|node_modules/tough-cookie/node_modules/punycode/|node_modules/hawk/example/|node_modules/hawk/node_modules/sntp/lib/|node_modules/http-signature/node_modules/ctype/tst/ctf/|node_modules/qs/|node_modules/hawk/node_modules/boom/test/|node_modules/hawk/node_modules/hoek/lib/|node_modules/hawk/node_modules/hoek/test/modules/|node_modules/http-signature/node_modules/ctype/tst/ctype/|node_modules/forever-agent/|node_modules/oauth-sign/|node_modules/mime/|node_modules/http-signature/lib/|node_modules/form-data/node_modules/async/lib/|node_modules/tough-cookie/lib/|node_modules/hawk/test/|node_modules/node-uuid/test/|node_modules/http-signature/node_modules/asn1/lib/ber/|node_modules/http-signature/node_modules/assert-plus/|node_modules/http-signature/node_modules/ctype/|node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/test/integration/|node_modules/form-data/node_modules/combined-stream/test/|node_modules/hawk/node_modules/sntp/examples/|node_modules/hawk/|node_modules/tunnel-agent/|lib/|node_modules/hawk/node_modules/cryptiles/|node_modules/http-signature/node_modules/ctype/tst/ctio/uint/|node_modules/form-data/node_modules/combined-stream/test/integration/|node_modules/hawk/node_modules/boom/lib/|node_modules/hawk/node_modules/hoek/|node_modules/http-signature/node_modules/asn1/lib/|node_modules/hawk/node_modules/cryptiles/test/|node_modules/form-data/node_modules/combined-stream/lib/|node_modules/hawk/node_modules/sntp/test/|node_modules/form-data/lib/|node_modules/hawk/node_modules/cryptiles/lib/|node_modules/hawk/node_modules/boom/|node_modules/hawk/node_modules/hoek/test/|node_modules/node-uuid/" kind="src" path="node_modules/node-gyp/node_modules/request"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/lib"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/aws-sign2"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/forever-agent"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/form-data/lib"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/form-data/node_modules/async/lib"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/form-data/node_modules/combined-stream/lib"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/lib"/>
+	<classpathentry excluding="integration/" kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/test"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/test/integration"/>
+	<classpathentry excluding="integration/" kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/form-data/node_modules/combined-stream/test"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/form-data/node_modules/combined-stream/test/integration"/>
+	<classpathentry excluding="lib/|node_modules/sntp/|example/|node_modules/sntp/lib/|node_modules/boom/test/|node_modules/hoek/lib/|node_modules/hoek/test/modules/|test/|node_modules/sntp/examples/|node_modules/cryptiles/|node_modules/boom/lib/|node_modules/hoek/|node_modules/cryptiles/test/|node_modules/sntp/test/|node_modules/cryptiles/lib/|node_modules/boom/|node_modules/hoek/test/" kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/example"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/lib"/>
+	<classpathentry excluding="test/|lib/" kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/boom"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/boom/lib"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/boom/test"/>
+	<classpathentry excluding="test/|lib/" kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/cryptiles"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/cryptiles/lib"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/cryptiles/test"/>
+	<classpathentry excluding="lib/|test/modules/|test/" kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/hoek"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/hoek/lib"/>
+	<classpathentry excluding="modules/" kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/hoek/test"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/hoek/test/modules"/>
+	<classpathentry excluding="lib/|examples/|test/" kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/sntp"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/sntp/examples"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/sntp/lib"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/node_modules/sntp/test"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/hawk/test"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/http-signature/lib"/>
+	<classpathentry excluding="ber/" kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/asn1/lib"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/asn1/lib/ber"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/asn1/tst/ber"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/assert-plus"/>
+	<classpathentry excluding="tst/ctio/int/|tst/ctio/float/|tst/ctf/|tst/ctype/|tst/ctio/uint/" kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/ctype"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/ctype/tst/ctf"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/ctype/tst/ctio/float"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/ctype/tst/ctio/int"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/ctype/tst/ctio/uint"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/http-signature/node_modules/ctype/tst/ctype"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/json-stringify-safe"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/mime"/>
+	<classpathentry excluding="benchmark/|test/" kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/node-uuid"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/node-uuid/benchmark"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/node-uuid/test"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/oauth-sign"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/qs"/>
+	<classpathentry excluding="node_modules/punycode/|lib/" kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/tough-cookie"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/tough-cookie/lib"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/tough-cookie/node_modules/punycode"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/request/node_modules/tunnel-agent"/>
+	<classpathentry excluding="test/" kind="src" path="node_modules/node-gyp/node_modules/rimraf"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/rimraf/test"/>
+	<classpathentry excluding="test/" kind="src" path="node_modules/node-gyp/node_modules/semver"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/semver/test"/>
+	<classpathentry excluding="node_modules/block-stream/|lib/|test/|node_modules/block-stream/test/|node_modules/block-stream/bench/|examples/|node_modules/inherits/" kind="src" path="node_modules/node-gyp/node_modules/tar"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/tar/examples"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/tar/lib"/>
+	<classpathentry excluding="test/|bench/" kind="src" path="node_modules/node-gyp/node_modules/tar/node_modules/block-stream"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/tar/node_modules/block-stream/bench"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/tar/node_modules/block-stream/test"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/tar/node_modules/inherits"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/tar/test"/>
+	<classpathentry kind="src" path="node_modules/node-gyp/node_modules/which"/>
+	<classpathentry excluding="test/_/|node_modules/wordwrap/test/|node_modules/wordwrap/|node_modules/wordwrap/example/|example/|test/" kind="src" path="node_modules/optimist"/>
+	<classpathentry kind="src" path="node_modules/optimist/example"/>
+	<classpathentry excluding="test/|example/" kind="src" path="node_modules/optimist/node_modules/wordwrap"/>
+	<classpathentry kind="src" path="node_modules/optimist/node_modules/wordwrap/example"/>
+	<classpathentry kind="src" path="node_modules/optimist/node_modules/wordwrap/test"/>
+	<classpathentry excluding="_/" kind="src" path="node_modules/optimist/test"/>
+	<classpathentry kind="src" path="node_modules/optimist/test/_"/>
+	<classpathentry excluding="node_modules/lodash/dist/|node_modules/fs-extra/node_modules/mkdirp/|node_modules/fs-extra/node_modules/mkdirp/test/|node_modules/fs-extra/node_modules/ncp/test/|node_modules/waterline-criteria/test/|test/|node_modules/fs-extra/node_modules/ncp/lib/|node_modules/fs-extra/node_modules/jsonfile/lib/|node_modules/fs-extra/node_modules/rimraf/test/|node_modules/fs-extra/lib/|node_modules/fs-extra/node_modules/mkdirp/examples/|node_modules/fs-extra/node_modules/rimraf/|node_modules/waterline-criteria/|node_modules/lodash/" kind="src" path="node_modules/sails-disk"/>
+	<classpathentry kind="src" path="node_modules/sails-disk/node_modules/fs-extra/lib"/>
+	<classpathentry kind="src" path="node_modules/sails-disk/node_modules/fs-extra/node_modules/jsonfile/lib"/>
+	<classpathentry excluding="test/|examples/" kind="src" path="node_modules/sails-disk/node_modules/fs-extra/node_modules/mkdirp"/>
+	<classpathentry kind="src" path="node_modules/sails-disk/node_modules/fs-extra/node_modules/mkdirp/examples"/>
+	<classpathentry kind="src" path="node_modules/sails-disk/node_modules/fs-extra/node_modules/mkdirp/test"/>
+	<classpathentry kind="src" path="node_modules/sails-disk/node_modules/fs-extra/node_modules/ncp/lib"/>
+	<classpathentry kind="src" path="node_modules/sails-disk/node_modules/fs-extra/node_modules/ncp/test"/>
+	<classpathentry excluding="test/" kind="src" path="node_modules/sails-disk/node_modules/fs-extra/node_modules/rimraf"/>
+	<classpathentry kind="src" path="node_modules/sails-disk/node_modules/fs-extra/node_modules/rimraf/test"/>
+	<classpathentry excluding="dist/" kind="src" path="node_modules/sails-disk/node_modules/lodash"/>
+	<classpathentry kind="src" path="node_modules/sails-disk/node_modules/lodash/dist"/>
+	<classpathentry excluding="test/" kind="src" path="node_modules/sails-disk/node_modules/waterline-criteria"/>
+	<classpathentry kind="src" path="node_modules/sails-disk/node_modules/waterline-criteria/test"/>
+	<classpathentry kind="src" path="node_modules/sails-disk/test"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/lib"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/async/lib"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/benchmark"/>
+	<classpathentry excluding="types/|native/" kind="src" path="node_modules/sails-postgresql/node_modules/pg/lib"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/lib/native"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/lib/types"/>
+	<classpathentry excluding="benchmark/|test/" kind="src" path="node_modules/sails-postgresql/node_modules/pg/node_modules/buffer-writer"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/node_modules/buffer-writer/benchmark"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/node_modules/buffer-writer/test"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/node_modules/generic-pool/lib"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/node_modules/generic-pool/test"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/node_modules/nan"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/node_modules/pgpass/lib"/>
+	<classpathentry excluding="node_modules/through/|examples/|test/|node_modules/through/test/" kind="src" path="node_modules/sails-postgresql/node_modules/pg/node_modules/pgpass/node_modules/split"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/node_modules/pgpass/node_modules/split/examples"/>
+	<classpathentry excluding="test/" kind="src" path="node_modules/sails-postgresql/node_modules/pg/node_modules/pgpass/node_modules/split/node_modules/through"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/node_modules/pgpass/node_modules/split/node_modules/through/test"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/node_modules/pgpass/node_modules/split/test"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/node_modules/pgpass/test"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/script"/>
+	<classpathentry excluding="unit/copystream/|integration/|unit/pool/|unit/connection-parameters/|native/|unit/client/|integration/gh-issues/|integration/connection/|integration/client/|integration/connection-pool/|unit/|unit/connection/" kind="src" path="node_modules/sails-postgresql/node_modules/pg/test"/>
+	<classpathentry excluding="gh-issues/|connection/|client/|connection-pool/" kind="src" path="node_modules/sails-postgresql/node_modules/pg/test/integration"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/test/integration/client"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/test/integration/connection"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/test/integration/connection-pool"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/test/integration/gh-issues"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/test/native"/>
+	<classpathentry excluding="copystream/|pool/|connection-parameters/|client/|connection/" kind="src" path="node_modules/sails-postgresql/node_modules/pg/test/unit"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/test/unit/client"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/test/unit/connection"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/test/unit/connection-parameters"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/test/unit/copystream"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/pg/test/unit/pool"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/node_modules/underscore"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/test/integration"/>
+	<classpathentry excluding="support/" kind="src" path="node_modules/sails-postgresql/test/load"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/test/load/support"/>
+	<classpathentry excluding="support/" kind="src" path="node_modules/sails-postgresql/test/unit"/>
+	<classpathentry kind="src" path="node_modules/sails-postgresql/test/unit/support"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

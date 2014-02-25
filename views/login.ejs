@@ -1,0 +1,11 @@
+<div ng-controller="LoginCtrl">
+ <span ng-show="loggedin">{{message}},{{user.username}}</span>
+ <span ng-show="loggedin"><input type="button" ng-click="logout()" value="Logout" /></span>
+ 
+  <form ng-submit="login()" ng-hide="loggedin">
+    <input ng-model="user.username" type="text" name="user" placeholder="Username" />
+    <input ng-model="user.password" type="password" name="pass" placeholder="Password" />
+    <input type="submit" value="Login" />
+  </form>
+  
+<div>
