@@ -97,14 +97,14 @@ module.exports = {
         		console.log("Thumbnail file path: "+file.path);
         		fs.readFile(file.path, function(err, data) {
         			if (err) {
-        				console.log("ERROR: Reading from temp file path "+err);
+        				console.log("ERROR: Reading from temp file path "+JSON.stringify(err));
         				res.json({
         					'error' : 'could not read file. Error Detail:'+err
         				});
         			} else {
         				fs.writeFile(filePath, data, function(err) {
         					if (err) {
-        						console.log("ERROR: Writing to full file path "+err);
+        						console.log("ERROR: Writing to full file path "+JSON.stringify(err));
         						res.json({
         							'error' : 'could not write file to storage. Error Detail:'+err
         						});
@@ -117,7 +117,7 @@ module.exports = {
         							  width:   200
         							}, function(err, stdout, stderr){
         							  if (err) {
-        								  console.log("ERROR: Generating thumbnail "+err);
+        								  console.log("ERROR: Generating thumbnail "+JSON.stringify(err));
         								  res.json({
         	        							'error' : 'Could not create thumbnail. Error Detail:'+err
         	        						});
@@ -135,13 +135,26 @@ module.exports = {
 	              				            }).done(function(err, photo) {
 	              				                    // Error handling
 	              				                    if (err) {
-	              				                    	console.log("ERROR: Saving to DB "+err);
+	              				                    	console.log("ERROR: Saving to DB "+JSON.stringify(err));
 	              				                    	res.json({
 	                  	        							'error' : 'Could not persist to database. Error Detail:'+err
 	                  	        						});
 	              				                        // The User was created successfully!
 	              				                    }else {
 	              				                        console.log("SUCCESS: Saved to DB with id: "+photo.id);
+	              				                        // Publish socket event for the photo creation to the subscribers
+	              				                        Photo.publishCreate({
+	              				                        	name: photo.name,
+	              				                        	size: photo.size,
+	              				                        	id: photo.id,
+	              				                        	createdAt: photo.createdAt,
+	              				                        	updatedAt: photo.updatedAt,
+	              				                        	likes: photo.likes,
+	              				                        	listingId: photo.listingId,
+	              				                        	isPrivate: photo.isPrivate,
+	              				                        	filePath: photo.filePath,
+	              				                        	thumbPath: photo.thumbPath
+	              				                        });
 	              				                        res.json("Successfully created the photo with id: "+photo.id);
 	              				                    }
 	              				             });
@@ -178,9 +191,9 @@ module.exports = {
         var listingId = req.params.id;
         var photoId = req.query.photoId;
         if(photoId && listingId){
-            Photo.findOne({listingId:listingId, id:photoId}).done(function(err, photos) {handlePhotosResult(err, photos, res)});
+            Photo.findOne({listingId:listingId, id:photoId}).done(function(err, photos) {handlePhotosResult(err, photos, res);});
         }else{
-            Photo.find({isPrivate:false, listingId:listingId}).limit(10).sort('name ASC').done(function(err, photos) {handlePhotosResult(err, photos, res)});
+            Photo.find({isPrivate:false, listingId:listingId}).limit(100).sort('name ASC').done(function(err, photos) {handlePhotosResult(err, photos, res)});
        }
     },
     
@@ -257,6 +270,18 @@ module.exports = {
             });
             res.json("Successfully update likes for photo: "+photo.id+", current likes count: "+photo.likes);
         });
+    },
+    
+    subscribe: function(req, res){
+       console.log('Inside subscribe');
+       /*Photo.find({
+			isPrivate : false
+		}).done(function(err, photos) {
+			Photo.subscribe(req.socket);
+			Photo.subscribe(req.socket, photos);
+		});*/
+       Photo.subscribe(req.socket);
+       res.send(200);
     },
   /**
    * Overrides for the settings in `config/controllers.js`

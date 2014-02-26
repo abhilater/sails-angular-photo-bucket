@@ -17,20 +17,14 @@
   }
 
   socket.on('connect', function socketConnected() {
+	
+	socket.request('/photo/subscribe', {}, function(response){
+		console.log("Socket Response: "+response);
+	});
 
     // Listen for Comet messages from Sails
-    socket.on('message', function messageReceived(message) {
-
-      ///////////////////////////////////////////////////////////
-      // Replace the following with your own custom logic
-      // to run when a new message arrives from the Sails.js
-      // server.
-      ///////////////////////////////////////////////////////////
-      log('New comet message received :: ', message);
-      //////////////////////////////////////////////////////
-
-    });
-
+    socket.on('message', cometMessageReceivedFromServer);
+   
 
     ///////////////////////////////////////////////////////////
     // Here's where you'll want to add any custom logic for
@@ -69,3 +63,25 @@
   window.io
 
 );
+
+/*
+ * This callback function handles the comet message from server based on the model 
+ */
+function cometMessageReceivedFromServer(message) {
+	console.log('New comet message received :: ', message);
+	if(message.model === 'photo'){
+		updatePhotoInDom(message);
+	}
+}
+
+function updatePhotoInDom(photo){
+    var scope = angular.element($("#photoMainDiv")).scope();
+    //console.log("Scope Photos before: "+JSON.stringify(scope.photos));
+    //console.log("Photo: "+JSON.stringify(photo));
+    
+    scope.$apply(function() {
+        scope.photos.push(photo.data);
+        //console.log("Scope Photos before: "+JSON.stringify(scope.photos));
+    });
+}
+

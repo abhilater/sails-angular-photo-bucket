@@ -19,17 +19,18 @@ module.exports.policies = {
   '*': true,
 
    UserController: {
-        '*': ['addResponseHeaders','isAuthenticated'],
+        '*': 'isAuthenticated',
 
-        login	: 'addResponseHeaders',
-        create  : ['addResponseHeaders', 'isAuthenticated', 'canCreateOrDeleteUser'],
-        destroy : ['addResponseHeaders', 'isAuthenticated', 'canCreateOrDeleteUser']
+        login	: true,
+        create  : ['isAuthenticated', 'canCreateOrDeleteUser'],
+        destroy : ['isAuthenticated', 'canCreateOrDeleteUser']
     },
 
     PhotoController: {
-        '*': ['addResponseHeaders','isAuthenticated'],
-        create:['addResponseHeaders', 'isAuthenticated','canCreatePhoto'],
-        find:['addResponseHeaders', 'isAuthenticated','canReadListing']
+        '*': 'isAuthenticated',
+        subscribe: true,
+        create:['isAuthenticated','canCreatePhoto'],
+        find:['isAuthenticated','canReadListing']
     }
 
 

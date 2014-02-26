@@ -25,6 +25,8 @@ results
 
 node_modules
 
+public/uploads
+
 npm-debug.log
 
 

@@ -33,7 +33,7 @@ module.exports.routes = {
   // 
   // (This would also work if you had a file at: `/views/home.ejs`)
 	'/' : {
-		view : 'main'
+		view : 'login'
 	},
 	'/login' : {
 		view : 'login'
@@ -176,6 +176,7 @@ module.exports.routes = {
         controller    : 'photo',
         action        : 'like'
     },
+    
 
     /*
 	 * Tag controller

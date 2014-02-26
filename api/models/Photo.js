@@ -11,7 +11,6 @@ module.exports = {
   attributes: {
     name: {
       type: 'STRING',
-      max: 150,
       required: true
     },
     size: {

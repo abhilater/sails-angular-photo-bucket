@@ -1,58 +1,51 @@
-<div ng-controller="PhotoListCtrl">
+<div id ="photoMainDiv" ng-controller="PhotoListCtrl" ng-init="init()">
   <div class="bar">
 		<!-- These two buttons switch the layout variable,
 			 which causes the correct UL to be shown. -->
 		<a class="list-icon" ng-class="{active: layout == 'list'}" ng-click="layout = 'list'"></a>
 		<a class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="layout = 'grid'"></a>
+		<a class="folder-icon" ng-class="{active: listingId == null}" ng-click="listingId=null;init()"></a>
 	</div>
 	<!-- We have two layouts. We choose which one to show depending on the "layout" binding -->
-	<ul ng-show="layout == 'grid'" class="grid">
+	<ul ng-show="listingId && layout == 'grid'" class="grid">
 		<!-- A view with big photos and no text -->
 		<li ng-repeat="p in photos">
 			<a href="{{p.thumbPath}}" target="_blank"><img ng-src="{{p.thumbPath}}" /></a>
 		</li>
 	</ul>
-	<ul ng-show="layout == 'list'" class="list">
+	<ul ng-show="listingId && layout == 'list'" class="list">
 		<!-- A compact view smaller photos and titles -->
 		<li ng-repeat="p in photos">
 			<a href="{{p.thumbPath}}" target="_blank"><img ng-src="{{p.thumbPath}}" /></a>
 			<p>{{p.name}}</p>
 		</li>
 	</ul>
+	
+	<ul ng-show="!listingId && layout == 'grid'" class="grid">
+		<li ng-repeat="l in listings">
+			<a href="#" ng-click="$parent.listingId = l.id; $parent.init()">{{l.name}}</a>
+		</li>
+	</ul>
+	<ul ng-show="!listingId && layout == 'list'" class="list">
+		<li ng-repeat="l in listings">
+			<a href="#" ng-click="$parent.listingId = l.id; $parent.init()">{{l.name}}</a>
+			<p>Last modified: {{l.updatedAt | date:'MM-dd-yyyy HH:MM'}}</p>
+		</li>
+	</ul>
+	
+	<div ng-show="listingId">
+	  <lvl-file-upload
+	  auto-upload='false'
+	  choose-file-button-text='Choose files'
+	  upload-file-button-text='Upload files'
+	  upload-url='/rest/api/photo'
+	  max-files='10'
+	  max-file-size-mb='5'
+	  get-additional-data='getData(files)'
+	  on-done='done(files, data)'
+	  on-progress='progress(percentDone)'
+	  on-error='error(files, type, msg)'/>
+	</div>
 </div>
 
-<div ng-controller="FileUploadCtrl">
-  <style>
-    .lvl-choose-button {
-      border:1px solid #8ed058;-webkit-box-shadow: #474747 0px 0px 5px ;-moz-box-shadow: #474747 0px 0px 5px ; box-shadow: #474747 0px 0px 5px ; -webkit-border-radius: 5px; -moz-border-radius: 5px;border-radius: 5px;font-size:12px;font-family:arial, helvetica, sans-serif; padding: 7px 10px 7px 10px; text-decoration:none; display:inline-block;text-shadow: 0px 1px 0 rgba(255,255,255,0.4);font-weight:bold; color: #4D7D32;
- background-color: #A9DB80; background-image: -webkit-gradient(linear, left top, left bottom, from(#A9DB80), to(#96C56F));
- background-image: -webkit-linear-gradient(top, #A9DB80, #96C56F);
- background-image: -moz-linear-gradient(top, #A9DB80, #96C56F);
- background-image: -ms-linear-gradient(top, #A9DB80, #96C56F);
- background-image: -o-linear-gradient(top, #A9DB80, #96C56F);
- background-image: linear-gradient(to bottom, #A9DB80, #96C56F);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#A9DB80, endColorstr=#96C56F);
-  }
-  
-  .lvl-upload-button {
-    border:1px solid #8ed058;-webkit-box-shadow: #474747 0px 0px 5px ;-moz-box-shadow: #474747 0px 0px 5px ; box-shadow: #474747 0px 0px 5px ; -webkit-border-radius: 5px; -moz-border-radius: 5px;border-radius: 5px;font-size:12px;font-family:arial, helvetica, sans-serif; padding: 7px 10px 7px 10px; text-decoration:none; display:inline-block;text-shadow: 0px 1px 0 rgba(255,255,255,0.4);font-weight:bold; color: #4D7D32;
- background-color: #A9DB80; background-image: -webkit-gradient(linear, left top, left bottom, from(#A9DB80), to(#96C56F));
- background-image: -webkit-linear-gradient(top, #A9DB80, #96C56F);
- background-image: -moz-linear-gradient(top, #A9DB80, #96C56F);
- background-image: -ms-linear-gradient(top, #A9DB80, #96C56F);
- background-image: -o-linear-gradient(top, #A9DB80, #96C56F);
- background-image: linear-gradient(to bottom, #A9DB80, #96C56F);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#A9DB80, endColorstr=#96C56F);
-  }
-  </style>
-  
-  <lvl-file-upload
-  auto-upload='false'
-  choose-file-button-text='Choose files'
-  upload-file-button-text='Upload files'
-  upload-url='/rest/api/photo'
-  max-files='10'
-  max-file-size-mb='5'
-  get-additional-data='getData(files)'
-  on-done='done(files, data)'
-  on-progress='progress(percentDone)'
-  on-error='error(files, type, msg)'/>
-</div>
+
