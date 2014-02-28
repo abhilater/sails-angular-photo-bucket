@@ -176,6 +176,10 @@ module.exports.routes = {
         controller    : 'photo',
         action        : 'like'
     },
+    'get /rest/api/photo/:photoId/tags': {
+        controller    : 'photo',
+        action        : 'getTags'
+    },
     
 
     /*

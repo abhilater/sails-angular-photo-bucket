@@ -1,4 +1,4 @@
-<div id ="photoMainDiv" ng-controller="PhotoListCtrl" ng-init="init()">
+<div id ="photoMainDiv" ng-controller="PhotoListCtrl" ng-init="init()" >
   <div class="bar">
 		<!-- These two buttons switch the layout variable,
 			 which causes the correct UL to be shown. -->
@@ -17,7 +17,8 @@
 		<!-- A compact view smaller photos and titles -->
 		<li ng-repeat="p in photos">
 			<a href="{{p.thumbPath}}" target="_blank"><img ng-src="{{p.thumbPath}}" /></a>
-			<p>{{p.name}}</p>
+			<p class="tags">{{p.tags.toString()}}</p>
+            <input type="text" ui-select2="select2Options" ng-model="p.tags" >
 		</li>
 	</ul>
 	

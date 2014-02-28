@@ -8,7 +8,10 @@ photoControllers.controller('PhotoListCtrl', ['$scope', 'Photo','Listing', funct
 	  $scope.layout = 'grid';
 	  $scope.photos = [];
 	  $scope.listingId = null;
-	  
+
+
+
+     // handler for the for photo page initialization
 	  $scope.init = function() {
 		console.log("Listing Id: "+$scope.listingId);  
 		if ($scope.listingId) {
@@ -19,6 +22,13 @@ photoControllers.controller('PhotoListCtrl', ['$scope', 'Photo','Listing', funct
 					$scope.message = 'Error fetching data';
 				} else {
 					$scope.photos = data;
+                    $scope.list_of_string = ['tag1', 'tag2'];
+                    $scope.select2Options = {
+                        'multiple': true,
+                        'simple_tags': true,
+                        'tags': ['tag6', 'tag7', 'tag8', 'tag9']  // Can be empty list.
+                    };
+
 				}
 			});
 		} else {
@@ -31,17 +41,20 @@ photoControllers.controller('PhotoListCtrl', ['$scope', 'Photo','Listing', funct
 			});
 		}
 	}; 
-	  
+
+    // handler for the upload progress
 	$scope.progress = function(percentDone) {
           console.log("progress: " + percentDone + "%");
     };
 
+    // handler for the upload completion
     $scope.done = function(files, data) {
           console.log("upload complete");
           console.log("data: " + JSON.stringify(data));
           writeFiles(files);
     };
 
+    // handlre for the sending of uoload data
     $scope.getData = function(files) { 
     	console.log('Inside get files');
     	//this data will be sent to the server with the files
@@ -50,6 +63,7 @@ photoControllers.controller('PhotoListCtrl', ['$scope', 'Photo','Listing', funct
         return {listingId:$scope.listingId, isPrivate:false};
     };
 
+    // error handler for upload
     $scope.error = function(files, type, msg) {
           console.log("Upload error: " + msg);
           console.log("Error type:" + type);

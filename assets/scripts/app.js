@@ -6,6 +6,7 @@ var app = angular.module('photoClientApp', [
   'ngSanitize',
   'ngRoute', 
   'lvl.directives.fileupload',
+  'ui.select2',
   'photoControllers',
   'photoServices'
 ]);

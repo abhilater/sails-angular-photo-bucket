@@ -2,7 +2,7 @@ var photoServices = angular.module('photoServices', [ 'ngResource' ]);
 
 photoServices.factory('Photo', [ '$resource', function($resource) {
 	console.log('Inside photo service');
-	return $resource('/rest/api/photo/:id', {}, {
+	return $resource('/rest/api/photo/:id/:action', {}, {
 		query : {
 			method : 'GET',
 			params : {

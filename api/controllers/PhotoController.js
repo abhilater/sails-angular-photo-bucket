@@ -14,26 +14,51 @@
  *
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
-
+var count = 0;
 var handlePhotosResult = function(err, photos, res) {
-
-    // Error handling
-    var resMessage;
     if (err) {
         return console.log(err);
-        resMessage = "Error occurred: "+err;
-
+        res.json({'error': 'Error occurred: '+err});
         // Found multiple users!
     } else {
         if(photos){
-            console.log("Photos found:", photos);
-            resMessage = photos;
+            //console.log("Photos found:", photos);
+            if(!Array.isArray(photos)){
+                photos = [photos];
+            }
+            for (index in photos){
+                count++;
+                putTags(photos,index, res);
+            }
+
         }else{
-            console.log("No results");
-            resMessage = "No results";
+            console.log('No results');
+            res.json('No results');
         }
     }
-    res.json(resMessage);
+}
+
+function putTags(photos, index, res){
+    var query = 'select t.label from tagphoto tp inner join tag t on tp."tagId" = t.id where tp."photoId" ='+ photos[index].id;
+    //console.log('Query: '+query);
+    Tagphoto.query(query, function(err, tags) {
+        count--;
+        if(err){
+            res.json({'error': 'Error occurred fetching tags. Error details: '+ JSON.stringify(err)});
+        }else{
+            photos[index].tags = getTagsArray(tags.rows);
+            console.log('Photo '+photos[index].id+', tags: '+JSON.stringify(photos[index].tags));
+            if(count == 0 ) res.json(photos);
+        }
+    });
+}
+
+function getTagsArray(map){
+    var array = [];
+    for(index in map){
+        array.push(map[index].label);
+    }
+    return array;
 }
 
 var uuid = require('node-uuid');
@@ -187,13 +212,30 @@ module.exports = {
             });
     },
 
+    getTags: function(req, res){
+        console.log('Inside get tags');
+        var photoId = req.params.photoId;
+        var query = 'select t.label, t.id from tagphoto tp inner join tag t on tp."tagId" = t.id where tp."photoId" ='+ photoId;
+        if(photoId){
+            console.log('Inside get tags with photoId'+photoId);
+            Tagphoto.query(query, function(err, tags) {
+                if(err){
+                    res.json({'error': 'Error occurred fetching tags. Error details: '+ JSON.stringify(err)});
+                }else{
+                    console.log('SUCCESS: Fetching the tags for the photo: '+photoId);
+                    res.json(tags.rows);
+                }
+            });
+        }
+    },
+
     find: function(req, res) {
         var listingId = req.params.id;
         var photoId = req.query.photoId;
         if(photoId && listingId){
             Photo.findOne({listingId:listingId, id:photoId}).done(function(err, photos) {handlePhotosResult(err, photos, res);});
         }else{
-            Photo.find({isPrivate:false, listingId:listingId}).limit(100).sort('name ASC').done(function(err, photos) {handlePhotosResult(err, photos, res)});
+            Photo.find({isPrivate:false, listingId:listingId}).limit(100).sort('updatedAt DESC').done(function(err, photos) {handlePhotosResult(err, photos, res)});
        }
     },
     
