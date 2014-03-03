@@ -1,4 +1,4 @@
-<div id ="photoMainDiv" ng-controller="PhotoListCtrl" ng-init="init()" >
+<div id ="photoMainDiv" ng-controller="PhotoListCtrl"  ng-init="init()">
   <div class="bar">
 		<!-- These two buttons switch the layout variable,
 			 which causes the correct UL to be shown. -->
@@ -13,12 +13,17 @@
 			<a href="{{p.thumbPath}}" target="_blank"><img ng-src="{{p.thumbPath}}" /></a>
 		</li>
 	</ul>
+
 	<ul ng-show="listingId && layout == 'list'" class="list">
 		<!-- A compact view smaller photos and titles -->
+
 		<li ng-repeat="p in photos">
-			<a href="{{p.thumbPath}}" target="_blank"><img ng-src="{{p.thumbPath}}" /></a>
-			<p class="tags">{{p.tags.toString()}}</p>
-            <input type="text" ui-select2="select2Options" ng-model="p.tags" >
+            <div>
+			    <a href="{{p.thumbPath}}" target="_blank"><img ng-src="{{p.thumbPath}}" /></a>
+			    <p class="tags">Tags: {{p.tags.toString()}}</p>
+                <input type="text" ui-select2="select2Options" ng-model="p.tags" class="tagtext" style="visibility: hidden" >
+                <a href="#" class="saveTags">save</a><input type="hidden" value="{{p}}" class="photoIdHidden">
+            </div>
 		</li>
 	</ul>
 	
@@ -48,5 +53,29 @@
 	  on-error='error(files, type, msg)'/>
 	</div>
 </div>
+<script>
+    //console.log('Inside bind');
+    jQuery(document).ready(function(){
+        jQuery('#photoMainDiv').on('click', '.tags', function(e){
+            //console.log('Inside javascript');
+            jQuery(this).hide();
+            jQuery(this).siblings('.select2-container').css('visibility', 'visible');
+        });
+        jQuery('#photoMainDiv').on('click', 'p', function(e){
+            e.stopPropagation();
+        });
+        jQuery('#photoMainDiv').on('click', '.saveTags', function(e){
+            angular.element('#photoMainDiv').scope().applyTags(jQuery(this).siblings('.photoIdHidden').val());
+        });
+        jQuery('#photoMainDiv').click(function(e){
+            //console.log('1Inside javascript');
+            //console.log(this);
+            jQuery('.tags').show();
+            jQuery('.select2-container').css('visibility', 'hidden');
+            //angular.element('#photoMainDiv').scope().applyTags();
+        });
 
+    });
+
+</script>
 

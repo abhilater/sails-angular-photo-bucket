@@ -1396,75 +1396,20 @@ test("Submit event can be stopped (#11049)", function() {
 
 // Test beforeunload event only if it supported (i.e. not Opera)
 if ( window.onbeforeunload === null ) {
-	asyncTest("on(beforeunload)", 4, function() {
-		var win,
-			forIE6 = 0,
-			fired = false,
-			iframe = jQuery("<iframe src='data/iframe.html' />");
+	asyncTest("on(beforeunload)", 1, function() {
+		var iframe = jQuery(jQuery.parseHTML("<iframe src='data/event/onbeforeunload.html'><iframe>"));
 
-		iframe.appendTo("#qunit-fixture").one( "load", function() {
-			win = this.contentWindow || this.contentDocument;
+		window.onmessage = function( event ) {
+			var payload = JSON.parse( event.data );
 
-			jQuery( win ).on( "beforeunload", function() {
-				fired = true;
-				ok( true, "beforeunload event is fired" );
-			});
+			ok( payload.event, "beforeunload", "beforeunload event" );
 
-			strictEqual( win.onbeforeunload, null, "onbeforeunload property on window object still equals null" );
+			iframe.remove();
+			window.onmessage = null;
+			start();
+		};
 
-			// In old Safari beforeunload event will not fire on iframes
-			jQuery( win ).on( "unload", function() {
-				if ( !fired ) {
-					ok( true, "This is suppose to be true only in old Safari" );
-					checker();
-				}
-			});
-
-			jQuery( win ).on( "beforeunload", function() {
-
-				// On iframe in IE6 beforeunload event will not fire if event is binded through window object,
-				// nevertheless, test should continue
-				window.setTimeout(function() {
-					if ( !forIE6 ) {
-						checker();
-					}
-				});
-			});
-
-			win.onbeforeunload = function() {
-				if ( !forIE6 ) {
-					forIE6++;
-					checker();
-				}
-			};
-
-			function checker() {
-				ok( true, "window.onbeforeunload handler is called" );
-				iframe = jQuery("<iframe src='data/iframe.html' />");
-
-				iframe.appendTo("#qunit-fixture").one( "load", function() {
-					win = iframe[ 0 ].contentWindow || iframe[ 0 ].contentDocument;
-
-					jQuery( win ).on( "beforeunload", function() {
-						strictEqual( win.onbeforeunload, null, "Event handler is fired, even when onbeforeunload property on window is nulled" );
-
-						start();
-					});
-
-					jQuery( win ).on( "unload", function() {
-						if ( !fired ) {
-							jQuery( win ).trigger("beforeunload");
-						}
-					});
-
-					win.onbeforeunload = null;
-
-					win.location.reload();
-				});
-			}
-
-			win.location.reload();
-		});
+		iframe.appendTo("#qunit-fixture");
 	});
 }
 
@@ -1495,7 +1440,7 @@ test("jQuery.Event( type, props )", function() {
 test("jQuery.Event properties", function(){
 	expect(12);
 
-	var handler, event,
+	var handler,
 		$structure = jQuery("<div id='ancestor'><p id='delegate'><span id='target'>shiny</span></p></div>"),
 		$target = $structure.find("#target");
 
@@ -1522,19 +1467,12 @@ test("jQuery.Event properties", function(){
 
 	handler = function( e ) {
 		strictEqual( e.isTrigger, undefined, "native event at " + this.id );
-		event = e;
 	};
 	$target.one( "click", handler );
 	$target[0].onclick = function( e ) {
 		strictEqual( e.isTrigger, undefined, "native event at target (native handler)" );
-		$target[0].onclick = null;
 	};
 	fireNative( $target[0], "click" );
-
-	// Make sure that even oldIE executes the inline handler
-	if ( $target[0].onclick ) {
-		$target[0].onclick( event );
-	}
 });
 
 test(".on()/.off()", function() {
@@ -1872,17 +1810,6 @@ test( "delegated event with selector matching Object.prototype property (#13203)
 	jQuery("#anchor2").trigger("click");
 
 	equal( matched, 0, "Nothing matched 'toString'" );
-});
-
-test( "delegated event with intermediate DOM manipulation (#13208)", function() {
-	expect(1);
-
-	jQuery("#foo").on( "click", "#sap", function() {});
-	jQuery("#sap").on( "click", "#anchor2", function() {
-		jQuery( this.parentNode ).remove();
-		ok( true, "Element removed" );
-	});
-	jQuery("#anchor2").trigger("click");
 });
 
 test("stopPropagation() stops directly-bound events on delegated target", function() {
@@ -2643,7 +2570,7 @@ test( "Namespace preserved when passed an Event (#12739)", function() {
 				e.handled = true;
 				equal( e.namespace, "bar", "namespace is bar" );
 				jQuery( e.target ).find("div").each(function() {
-				  jQuery( this ).triggerHandler( e );
+					jQuery( this ).triggerHandler( e );
 				});
 			}
 		})

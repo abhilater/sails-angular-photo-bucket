@@ -9,7 +9,14 @@ photoServices.factory('Photo', [ '$resource', function($resource) {
 				id : '@id'
 			},
 			isArray : true
-		}
+		},
+        tag : {
+            method: 'POST',
+            params : {
+                id : '@id',
+                action: 'tag'
+            }
+        }
 	});
 } ]);
 

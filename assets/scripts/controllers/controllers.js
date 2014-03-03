@@ -7,9 +7,16 @@ photoControllers.controller('PhotoListCtrl', ['$scope', 'Photo','Listing', funct
 	  $scope.message = '';
 	  $scope.layout = 'grid';
 	  $scope.photos = [];
+      $scope.photoMap = {};
 	  $scope.listingId = null;
 
 
+    $scope.select2Options = {
+        multiple: true,
+        simple_tags: true,
+        width:'300px',
+        tags: [{id:1, text:'tag6'}, {id:2, text:'tag7'}, {id:3, text:'tag8'}, {id:4, text:'tag9'}]  // Can be empty list.
+    };
 
      // handler for the for photo page initialization
 	  $scope.init = function() {
@@ -22,13 +29,6 @@ photoControllers.controller('PhotoListCtrl', ['$scope', 'Photo','Listing', funct
 					$scope.message = 'Error fetching data';
 				} else {
 					$scope.photos = data;
-                    $scope.list_of_string = ['tag1', 'tag2'];
-                    $scope.select2Options = {
-                        'multiple': true,
-                        'simple_tags': true,
-                        'tags': ['tag6', 'tag7', 'tag8', 'tag9']  // Can be empty list.
-                    };
-
 				}
 			});
 		} else {
@@ -40,7 +40,26 @@ photoControllers.controller('PhotoListCtrl', ['$scope', 'Photo','Listing', funct
 				}
 			});
 		}
-	}; 
+	};
+
+
+    // handler for the upload progress
+    $scope.applyTags = function(photoStr) {
+
+       var photoObj = JSON.parse(photoStr);
+
+       console.log('Photo is '+ photoObj);
+       var tags = {'tags':photoObj.tags};
+       console.log('Tags sent: '+JSON.stringify(tags));
+       Photo.tag({id: photoObj.id}, tags, function(resp, err){
+           if (err) {
+               $scope.message = 'Error updating tags';
+           } else {
+               console.log("Message: "+resp);
+           }
+       });
+    };
+    //$scope.$on('$viewContentLoaded', bindJquery);
 
     // handler for the upload progress
 	$scope.progress = function(percentDone) {
@@ -87,6 +106,7 @@ photoControllers.controller('LoginCtrl', ['$scope','$http', '$cookies', function
 	  $scope.message = '';
 	  $scope.user = null;
 	  $scope.userCreds = null;
+
 	  $scope.login = function () {
 	    $http
 	      .post('/rest/api/login', $scope.userCreds)

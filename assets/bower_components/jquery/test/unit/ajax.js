@@ -30,6 +30,11 @@ module( "ajax", {
 
 //----------- jQuery.ajax()
 
+	testIframeWithCallback( "XMLHttpRequest - Attempt to block tests because of dangling XHR requests (IE)", "ajax/unreleasedXHR.html", function() {
+		expect( 1 );
+		ok( true, "done" );
+	});
+
 	ajaxTest( "jQuery.ajax() - success callbacks", 8, {
 		setup: addGlobalEvents("ajaxStart ajaxStop ajaxSend ajaxComplete ajaxSuccess"),
 		url: url("data/name.html"),
@@ -967,96 +972,47 @@ module( "ajax", {
 			" (no cache)": false
 		},
 		function( label, cache ) {
-			var isOpera = !!window.opera;
-
-			asyncTest( "jQuery.ajax() - If-Modified-Since support" + label, 3, function() {
-				var url = "data/if_modified_since.php?ts=" + ifModifiedNow++;
-
-				jQuery.ajax({
-					url: url,
-					ifModified: true,
-					cache: cache,
-					success: function( data, status ) {
-						strictEqual( status, "success" );
-
+			// Support: Opera 12.0
+			// In Opera 12.0, XHR doesn't notify 304 back to the user properly
+			var opera = window.opera && window.opera.version();
+			jQuery.each(
+				{
+					"If-Modified-Since": "if_modified_since.php",
+					"Etag": "etag.php"
+				},
+				function( type, url ) {
+					url = "data/" + url + "?ts=" + ifModifiedNow++;
+					asyncTest( "jQuery.ajax() - " + type + " support" + label, 4, function() {
 						jQuery.ajax({
 							url: url,
 							ifModified: true,
 							cache: cache,
-							success: function( data, status ) {
-								if ( data === "FAIL" ) {
-									ok( isOpera, "Opera is incapable of doing .setRequestHeader('If-Modified-Since')." );
-									ok( isOpera, "Opera is incapable of doing .setRequestHeader('If-Modified-Since')." );
-								} else {
-									strictEqual( status, "notmodified" );
-									ok( data == null, "response body should be empty" );
-								}
-								start();
-							},
-							error: function() {
-								// Do this because opera simply refuses to implement 304 handling :(
-								// A feature-driven way of detecting this would be appreciated
-								// See: http://gist.github.com/599419
-								ok( isOpera, "error" );
-								ok( isOpera, "error" );
-								start();
+							success: function( _, status ) {
+								strictEqual( status, "success", "Initial status is 'success'" );
+								jQuery.ajax({
+									url: url,
+									ifModified: true,
+									cache: cache,
+									success: function( data, status, jqXHR ) {
+										if ( status === "success" && opera === "12.00" ) {
+											strictEqual( status, "success", "Opera 12.0: Following status is 'success'" );
+											strictEqual( jqXHR.status, 200, "Opera 12.0: XHR status is 200, not 304" );
+											strictEqual( data, "", "Opera 12.0: response body is empty" );
+										} else {
+											strictEqual( status, "notmodified", "Following status is 'notmodified'" );
+											strictEqual( jqXHR.status, 304, "XHR status is 304" );
+											equal( data, null, "no response body is given" );
+										}
+									},
+									complete: function() {
+										start();
+									}
+								});
 							}
 						});
-					},
-					error: function() {
-						strictEqual( false, "error" );
-						// Do this because opera simply refuses to implement 304 handling :(
-						// A feature-driven way of detecting this would be appreciated
-						// See: http://gist.github.com/599419
-						ok( isOpera, "error" );
-						start();
-					}
-				});
-			});
-
-			asyncTest( "jQuery.ajax() - Etag support" + label, 3, function() {
-				var url = "data/etag.php?ts=" + ifModifiedNow++;
-
-				jQuery.ajax({
-					url: url,
-					ifModified: true,
-					cache: cache,
-					success: function( data, status ) {
-						strictEqual( status, "success" );
-
-						jQuery.ajax({
-							url: url,
-							ifModified: true,
-							cache: cache,
-							success: function( data, status ) {
-								if ( data === "FAIL" ) {
-									ok( isOpera, "Opera is incapable of doing .setRequestHeader('If-None-Match')." );
-									ok( isOpera, "Opera is incapable of doing .setRequestHeader('If-None-Match')." );
-								} else {
-									strictEqual( status, "notmodified" );
-									ok( data == null, "response body should be empty" );
-								}
-								start();
-							},
-							error: function() {
-								// Do this because opera simply refuses to implement 304 handling :(
-								// A feature-driven way of detecting this would be appreciated
-								// See: http://gist.github.com/599419
-								ok( isOpera, "error" );
-								ok( isOpera, "error" );
-								start();
-							}
-						});
-					},
-					error: function() {
-						// Do this because opera simply refuses to implement 304 handling :(
-						// A feature-driven way of detecting this would be appreciated
-						// See: http://gist.github.com/599419
-						ok( isOpera, "error" );
-						start();
-					}
-				});
-			});
+					});
+				}
+			);
 		}
 		/* jQuery.each arguments end */
 	);
@@ -1089,7 +1045,6 @@ module( "ajax", {
 			ok( jqXHR.statusText === "Hello" || jqXHR.statusText === "OK", "jqXHR status text ok for success (" + jqXHR.statusText + ")" );
 			jQuery.ajax( url("data/statusText.php?status=404&text=World") ).fail(function( jqXHR, statusText ) {
 				strictEqual( statusText, "error", "callback status text ok for error" );
-				// ok( jqXHR.statusText === "World" || jQuery.browser.safari && jqXHR.statusText === "Not Found", "jqXHR status text ok for error (" + jqXHR.statusText + ")" );
 				start();
 			});
 		});
@@ -1442,24 +1397,26 @@ module( "ajax", {
 		}
 	});
 
-	test( "#11743 - jQuery.ajax() - script, throws exception", 1, function() {
-		raises(function() {
-			jQuery.ajax({
-				url: "data/badjson.js",
-				dataType: "script",
-				throws: true,
-				// TODO find a way to test this asynchronously, too
-				async: false,
-				// Global events get confused by the exception
-				global: false,
-				success: function() {
-					ok( false, "Success." );
-				},
-				error: function() {
-					ok( false, "Error." );
-				}
-			});
-		}, "exception bubbled" );
+	asyncTest( "#11743 - jQuery.ajax() - script, throws exception", 1, function() {
+		var onerror = window.onerror;
+		window.onerror = function() {
+			ok( true, "Exception thrown" );
+			window.onerror = onerror;
+			start();
+		};
+		jQuery.ajax({
+			url: "data/badjson.js",
+			dataType: "script",
+			throws: true,
+			// Global events get confused by the exception
+			global: false,
+			success: function() {
+				ok( false, "Success." );
+			},
+			error: function() {
+				ok( false, "Error." );
+			}
+		});
 	});
 
 	jQuery.each( [ "method", "type" ], function( _, globalOption ) {
@@ -1714,25 +1671,6 @@ module( "ajax", {
 				strictEqual( json["data"].length, 25, "Check JSON: length" );
 				start();
 			}
-		});
-	});
-
-	asyncTest( "jQuery.getJSON() - Using Native JSON", 2, function() {
-		var restore = "JSON" in window,
-			old = window.JSON;
-		if ( !restore ) {
-			Globals.register("JSON");
-		}
-		window.JSON = {
-			parse: function() {
-				ok( true, "Verifying that parse method was run" );
-				window.JSON = old;
-				return true;
-			}
-		};
-		jQuery.getJSON( url("data/json.php"), function( json ) {
-			strictEqual( json, true, "Verifying return value" );
-			start();
 		});
 	});
 

@@ -46,10 +46,6 @@ test( "jQuery.propFix integrity test", function() {
 		"contenteditable": "contentEditable"
 	};
 
-	if ( !jQuery.support.enctype ) {
-		props.enctype = "encoding";
-	}
-
 	deepEqual( props, jQuery.propFix, "jQuery.propFix passes integrity check" );
 });
 
@@ -460,6 +456,7 @@ test( "attr(String, Object)", function() {
 	// Setting attributes on svg elements (bug #3116)
 	$svg = jQuery(
 		"<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' baseProfile='full' width='200' height='200'>" +
+
 			"<circle cx='200' cy='200' r='150' />" +
 			"</svg>"
 		).appendTo("body");
@@ -1037,7 +1034,6 @@ var testAddClass = function( valueObj ) {
 
 	var pass, j, i,
 		div = jQuery("#qunit-fixture div");
-
 	div.addClass( valueObj("test") );
 	pass = true;
 	for ( i = 0; i < div.length; i++ ) {

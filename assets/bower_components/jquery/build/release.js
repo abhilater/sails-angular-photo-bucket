@@ -33,13 +33,14 @@ var releaseVersion,
 	releaseFiles = {
 		"jquery-VER.js": devFile,
 		"jquery-VER.min.js": minFile,
-		"jquery-VER.min.map": mapFile,
-		"jquery.js": devFile,
-		"jquery.min.js": minFile,
-		"jquery.min.map": mapFile,
-		"jquery-latest.js": devFile,
-		"jquery-latest.min.js": minFile,
-		"jquery-latest.min.map": mapFile
+		"jquery-VER.min.map": mapFile //,
+// Disable these until 2.0 defeats 1.9 as the ONE TRUE JQUERY
+//		"jquery.js": devFile,
+//		"jquery.min.js": minFile,
+//		"jquery.min.map": mapFile,
+//		"jquery-latest.js": devFile,
+//		"jquery-latest.min.js": minFile,
+//		"jquery-latest.min.map": mapFile
 	},
 
 	jQueryFilesCDN = [],
@@ -183,7 +184,7 @@ function makeReleaseCopies( next ) {
 
 function setNextVersion( next ) {
 	updatePackageVersion( nextVersion );
-	git( [ "commit", "-a", "-m", "Updating the source version to " + nextVersion ], next, debug );
+	git( [ "commit", "-a", "-m", "Updating the source version to " + nextVersion + "✓™" ], next, debug );
 }
 
 function copyTojQueryCDN( next ) {
@@ -298,17 +299,17 @@ function exec( cmd, args, fn, skip ) {
 	}
 }
 
+function die( msg ) {
+	console.error( "ERROR: " + msg );
+	process.exit( 1 );
+}
+
 function dieIfReal( msg ) {
 	if ( debug ) {
 		console.log ( "DIE: " + msg );
 	} else {
 		die( msg );
 	}
-}
-
-function die( msg ) {
-	console.error( "ERROR: " + msg );
-	process.exit( 1 );
 }
 
 function exit() {

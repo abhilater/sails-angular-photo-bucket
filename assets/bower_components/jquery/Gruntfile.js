@@ -46,7 +46,7 @@ module.exports = function( grunt ) {
 				src: [
 					"src/intro.js",
 					"src/core.js",
-					"src/selector-sizzle.js",
+					{ flag: "sizzle", src: "src/selector-sizzle.js", alt: "src/selector-native.js" },
 					"src/callbacks.js",
 					"src/deferred.js",
 					"src/support.js",
@@ -139,6 +139,10 @@ module.exports = function( grunt ) {
 						join_vars: false,
 						loops: false,
 						unused: false
+					},
+					mangle: {
+						// saves some bytes when gzipped
+						except: [ "undefined" ]
 					}
 				}
 			}
@@ -177,6 +181,7 @@ module.exports = function( grunt ) {
 			runs[test] = config.testUrl + commit + "/test/index.html?module=" + test;
 		});
 
+		// TODO: create separate job for git/git2 so we can do different browsersets
 		testswarm.createClient( {
 			url: config.swarmUrl,
 			pollInterval: 10000,
@@ -192,7 +197,7 @@ module.exports = function( grunt ) {
 				name: jobName,
 				runs: runs,
 				runMax: config.runMax,
-				browserSets: config.browserSets
+				browserSets: "popular-no-old-ie"
 			}, function( err, passed ) {
 				if ( err ) {
 					grunt.log.error( err );

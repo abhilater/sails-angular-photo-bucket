@@ -266,39 +266,53 @@ module.exports = {
 
     tag: function(req, res) {
         var resMessage='';
+        var tags = req.body.tags;
+        console.log('Tags obtained: '+JSON.stringify(tags));
+        if(tags){
+            for(tagItem in tags){
 
-        Tag.findOne({label:req.body.label}).done(function(err, tag){
+                Tag.findOne({label:tags[tagItem]}).done(function(err, tag){
 
-            if(tag){
-                Tagphoto.create({tagId:tag.id, photoId:req.params.id}).done(function(err, tagphoto){
-                    if(err){
-                        resMessage = "Error occurred creating photo tag: "+err;
-                    }else{
-                        resMessage = "Successfully created photo tag: "+tagphoto.id;
-                    }
-                    res.json(resMessage);
-                });
-            }else{
-                console.log("Inside else");
-                Tag.create({label:req.body.label, description:req.body.description}).done(function(err, tag){
-                    if(err){
-                       resMessage = "Error creating tag: "+err;
-                    }else{
-                        if(tag){
-                            Tagphoto.create({tagId:tag.id, photoId:req.params.id}).done(function(err, tagphoto){
-
-                              if(err){
+                    if(tag){
+                        Tagphoto.findOne({tagId: tag.id, photoId: req.params.id}).done(function(err, tagphoto){
+                            if(err){
                                 resMessage = "Error occurred creating photo tag: "+err;
-                              }else if(tagphoto){
-                                resMessage = "Successfully created photo tag: "+tagphoto.id;
-                              }
-                                res.json(resMessage);
-                          });
-                        }
+                            }else if(tagphoto){
+                                resMessage = "Error: Tag already exists for photo";
+                            }else{
+                                Tagphoto.create({tagId:tag.id, photoId:req.params.id}).done(function(err, tagphoto){
+                                    if(err){
+                                        resMessage = "Error occurred creating photo tag: "+err;
+                                    }else{
+                                        resMessage = "Successfully created photo tag: "+tagphoto.id;
+                                    }
+                                    res.json(resMessage);
+                                });
+                            }
+                        });
+                    }else{
+                        console.log("Inside else");
+                        Tag.create({label:tags[tagItem], description:''}).done(function(err, tag){
+                            if(err){
+                               resMessage = "Error creating tag: "+err;
+                            }else{
+                                if(tag){
+                                    Tagphoto.create({tagId:tag.id, photoId:req.params.id}).done(function(err, tagphoto){
+
+                                      if(err){
+                                        resMessage = "Error occurred creating photo tag: "+err;
+                                      }else if(tagphoto){
+                                        resMessage = "Successfully created photo tag: "+tagphoto.id;
+                                      }
+                                        res.json(resMessage);
+                                  });
+                                }
+                            }
+                        });
                     }
                 });
             }
-        });
+        }
     },
 
     like: function(req, res) {

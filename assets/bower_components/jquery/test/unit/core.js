@@ -24,6 +24,11 @@ testIframeWithCallback( "Conditional compilation compatibility (#13274)", "core/
 	ok( $(), "jQuery executes" );
 });
 
+testIframeWithCallback( "document ready when jQuery loaded asynchronously (#13655)", "core/dynamic_ready.html", function( ready ) {
+	expect( 1 );
+	equal( true, ready, "document ready correctly fired when jQuery is loaded after DOMContentLoaded" );
+});
+
 test("jQuery()", function() {
 
 	var elem, i,
@@ -221,6 +226,14 @@ test( "globalEval", function() {
 	equal( window.globalEvalTest, 3, "Test context (this) is the window object" );
 });
 
+test( "globalEval with 'use strict'", function() {
+	expect( 1 );
+	Globals.register("strictEvalTest");
+
+	jQuery.globalEval("'use strict'; var strictEvalTest = 1;");
+	equal( window.strictEvalTest, 1, "Test variable declarations are global (strict mode)" );
+});
+
 test("noConflict", function() {
 	expect(7);
 
@@ -302,7 +315,7 @@ test("type", function() {
 });
 
 asyncTest("isPlainObject", function() {
-	expect(16);
+	expect(15);
 
 	var pass, iframe, doc,
 		fn = function() {};
@@ -335,16 +348,6 @@ asyncTest("isPlainObject", function() {
 
 	// Again, instantiated objects shouldn't be matched
 	ok( !jQuery.isPlainObject(new fn()), "new fn" );
-
-	// Make it even harder to detect in IE < 9
-	fn = function() {
-		this.a = "a";
-	};
-	fn.prototype = {
-		b: "b"
-	};
-
-	ok( !jQuery.isPlainObject(new fn()), "fn (inherited and own properties)");
 
 	// DOM Element
 	ok( !jQuery.isPlainObject( document.createElement("div") ), "DOM Element" );
@@ -1046,6 +1049,27 @@ test("jQuery.extend(Object, Object)", function() {
 	deepEqual( options2, options2Copy, "Check if not modified: options2 must not be modified" );
 });
 
+test("jQuery.extend(true,{},{a:[], o:{}}); deep copy with array, followed by object", function() {
+	expect(2);
+
+	var result, initial = {
+		// This will make "copyIsArray" true
+		array: [ 1, 2, 3, 4 ],
+		// If "copyIsArray" doesn't get reset to false, the check
+		// will evaluate true and enter the array copy block
+		// instead of the object copy block. Since the ternary in the
+		// "copyIsArray" block will will evaluate to false
+		// (check if operating on an array with ), this will be
+		// replaced by an empty array.
+		object: {}
+	};
+
+	result = jQuery.extend( true, {}, initial );
+
+	deepEqual( result, initial, "The [result] and [initial] have equal shape and values" );
+	ok( !jQuery.isArray( result.object ), "result.object wasn't paved with an empty array" );
+});
+
 test("jQuery.each(Object,Function)", function() {
 	expect( 23 );
 
@@ -1248,7 +1272,7 @@ test("jQuery.proxy", function(){
 });
 
 test("jQuery.parseHTML", function() {
-	expect( 17 );
+	expect( 18 );
 
 	var html, nodes;
 
@@ -1277,11 +1301,14 @@ test("jQuery.parseHTML", function() {
 	equal( jQuery.parseHTML(" <div/> ")[0].nodeType, 3, "Leading spaces are treated as text nodes (#11290)" );
 
 	html = jQuery.parseHTML( "<div>test div</div>" );
+
 	equal( html[ 0 ].parentNode.nodeType, 11, "parentNode should be documentFragment" );
 	equal( html[ 0 ].innerHTML, "test div", "Content should be preserved" );
 
 	equal( jQuery.parseHTML("<span><span>").length, 1, "Incorrect html-strings should not break anything" );
-	equal( jQuery.parseHTML("<td><td>")[ 1 ].parentNode.nodeType, 11, "parentNode should be documentFragment" );
+	equal( jQuery.parseHTML("<td><td>")[ 1 ].parentNode.nodeType, 11,
+		"parentNode should be documentFragment for wrapMap (variable in manipulation module) elements too" );
+	ok( jQuery.parseHTML("<#if><tr><p>This is a test.</p></tr><#/if>") || true, "Garbage input should not cause error" );
 });
 
 test("jQuery.parseJSON", function(){

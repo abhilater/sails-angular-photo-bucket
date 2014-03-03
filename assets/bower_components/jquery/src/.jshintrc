@@ -13,15 +13,14 @@
 	"undef": true,
 	"unused": true,
 
-	"evil": true,
 	"sub": true,
 
 	"browser": true,
-	"wsh": true,
+	"es5": true,
 
 	"globals": {
+		"jQuery": true,
 		"define": true,
-		"module": true,
-		"jQuery": true
+		"module": true
 	}
 }
