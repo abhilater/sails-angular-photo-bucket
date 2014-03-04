@@ -1,7 +1,7 @@
 'use strict';
 var photoControllers = angular.module('photoControllers', []);
 
-photoControllers.controller('PhotoListCtrl', ['$scope', 'Photo','Listing', function($scope, Photo, Listing) {
+photoControllers.controller('PhotoListCtrl', ['$scope','$upload', 'Photo','Listing', function($scope,$upload, Photo, Listing) {
 	 
 	  console.log('Inside Photo controller');
 	  $scope.message = '';
@@ -9,6 +9,8 @@ photoControllers.controller('PhotoListCtrl', ['$scope', 'Photo','Listing', funct
 	  $scope.photos = [];
       $scope.photoMap = {};
 	  $scope.listingId = null;
+      $scope.photoDialogShown = false;
+      $scope.photoDialogPhoto = null;
 
 
     $scope.select2Options = {
@@ -43,6 +45,16 @@ photoControllers.controller('PhotoListCtrl', ['$scope', 'Photo','Listing', funct
 	};
 
 
+
+    $scope.doLike = function(photo) {
+        Photo.like({id: photo.id}, {}, function(){
+
+            console.log('Successfull updated likes');
+            photo.likes = photo.likes +1;
+
+        });
+    };
+
     // handler for the upload progress
     $scope.applyTags = function(photoStr) {
 
@@ -59,9 +71,35 @@ photoControllers.controller('PhotoListCtrl', ['$scope', 'Photo','Listing', funct
            }
        });
     };
-    //$scope.$on('$viewContentLoaded', bindJquery);
 
-    // handler for the upload progress
+
+    $scope.onFileSelect = function($files) {
+        //$files: an array of files selected, each file has name, size, and type.
+
+        $scope.upload = $upload.upload({
+            url: '/rest/api/photo', //upload.php script, node.js route, or servlet url
+            // method: POST or PUT,
+            // headers: {'headerKey': 'headerValue'},
+            // withCredentials: true,
+            data: {listingId:$scope.listingId, isPrivate:false},
+            file: $files
+            // file: $files, //upload multiple files, this feature only works in HTML5 FromData browsers
+            /* set file formData name for 'Content-Desposition' header. Default: 'file' */
+            //fileFormDataName: myFile, //OR for HTML5 multiple upload only a list: ['name1', 'name2', ...]
+            /* customize how data is added to formData. See #40#issuecomment-28612000 for example */
+            //formDataAppender: function(formData, key, val){} //#40#issuecomment-28612000
+        }).progress(function(evt) {
+                console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+            }).success(function(data, status, headers, config) {
+                // file is uploaded successfully
+                console.log(data);
+            });
+        //.error(...)
+        //.then(success, error, progress);
+        // $scope.upload = $upload.upload({...}) alternative way of uploading, sends the the file content directly with the same content-type of the file. Could be used to upload files to CouchDB, imgur, etc... for HTML5 FileReader browsers.
+    };
+
+    /*// handler for the upload progress
 	$scope.progress = function(percentDone) {
           console.log("progress: " + percentDone + "%");
     };
@@ -95,7 +133,7 @@ photoControllers.controller('PhotoListCtrl', ['$scope', 'Photo','Listing', funct
           for (var i = 0; i < files.length; i++) {
                 console.log('\t' + files[i].name);
           }
-    }
+    }*/
 	  
 	}]);
 
