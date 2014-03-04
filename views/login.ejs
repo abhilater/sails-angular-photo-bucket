@@ -1,6 +1,7 @@
 <div ng-controller="LoginCtrl">
 	  <span ng-show="user">{{message}},{{user.username}}</span>
-	  <span ng-show="user"><input type="button" ng-click="logout()" value="Logout" /></span>
+	  <span ng-show="user"><input type="button" ng-click="logout()" value="Logout" /></span><br>
+      <span ng-show="user" style="text-align: left"><a href="/photos">Listings</a></span>
 
   <form ng-submit="login()" ng-hide="user">
     <input ng-model="userCreds.username" type="text" name="user" placeholder="Username" />

@@ -269,9 +269,9 @@ module.exports = {
         var tags = req.body.tags;
         console.log('Tags obtained: '+JSON.stringify(tags));
         if(tags){
-            for(tagItem in tags){
-
-                Tag.findOne({label:tags[tagItem]}).done(function(err, tag){
+            tags.forEach(function(tagItem){
+                console.log('Tag value: '+tagItem);
+                Tag.findOne({label:tagItem}).done(function(err, tag){
 
                     if(tag){
                         Tagphoto.findOne({tagId: tag.id, photoId: req.params.id}).done(function(err, tagphoto){
@@ -291,13 +291,13 @@ module.exports = {
                             }
                         });
                     }else{
-                        console.log("Inside else");
-                        Tag.create({label:tags[tagItem], description:''}).done(function(err, tag){
+                        console.log("Inside else creating Tag val: "+tagItem);
+                        Tag.create({label:tagItem, description:''}).done(function(err, createdTag){
                             if(err){
                                resMessage = "Error creating tag: "+err;
                             }else{
-                                if(tag){
-                                    Tagphoto.create({tagId:tag.id, photoId:req.params.id}).done(function(err, tagphoto){
+                                if(createdTag){
+                                    Tagphoto.create({tagId:createdTag.id, photoId:req.params.id}).done(function(err, tagphoto){
 
                                       if(err){
                                         resMessage = "Error occurred creating photo tag: "+err;
@@ -311,7 +311,7 @@ module.exports = {
                         });
                     }
                 });
-            }
+            });
         }
     },
 

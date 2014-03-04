@@ -16,6 +16,13 @@ photoServices.factory('Photo', [ '$resource', function($resource) {
                 id : '@id',
                 action: 'tag'
             }
+        },
+        like: {
+            method: 'PUT',
+            params : {
+                id : '@id',
+                action: 'like'
+            }
         }
 	});
 } ]);

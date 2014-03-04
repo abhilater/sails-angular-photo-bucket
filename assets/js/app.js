@@ -80,7 +80,7 @@ function updatePhotoInDom(photo){
     //console.log("Photo: "+JSON.stringify(photo));
     
     scope.$apply(function() {
-        scope.photos.push(photo.data);
+        scope.photos.unshift(photo.data);
         //console.log("Scope Photos before: "+JSON.stringify(scope.photos));
     });
 }
