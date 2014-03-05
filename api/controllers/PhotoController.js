@@ -203,7 +203,7 @@ module.exports = {
         }).done(function(err) {
 
                 if (err) {
-                    return console.log(err);
+                    res.json(err);
 
                 } else {
                     console.log("Successfully deleted the photo.");

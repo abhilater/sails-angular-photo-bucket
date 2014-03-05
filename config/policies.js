@@ -31,8 +31,20 @@ module.exports.policies = {
         subscribe: true,
         create:['isAuthenticated','canCreatePhoto'],
         find:['isAuthenticated','canReadListing']
-    }
+    },
 
+    ListingController: {
+        '*': 'isAuthenticated'
+    },
+
+    RoleController: {
+        '*': 'isAdmin'
+    },
+
+    PermissionController: {
+        '*': 'isAdmin'
+
+    }
 
 
   /*

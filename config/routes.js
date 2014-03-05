@@ -41,7 +41,9 @@ module.exports.routes = {
 	'/photos' : {
 		view : 'main'
 	},
-  
+    '/admin' : {
+        view : 'admin'
+    },
 
   /*
 	 * // But what if you want your home page to display // a signup form
@@ -185,19 +187,10 @@ module.exports.routes = {
     /*
 	 * Tag controller
 	 */
-   'get /rest/api/tag/:id?': {
-        controller    : 'tag',
-        action        : 'find'
-    },
 
-    'post /rest/api/tag': {
+    'get /rest/api/tag/top': {
         controller    : 'tag',
-        action        : 'create'
-    },
-    
-    'delete /rest/api/tag/:id': {
-        controller    : 'tag',
-        action        : 'destroy'
+        action        : 'getTopTags'
     },
 
     /*
@@ -211,8 +204,14 @@ module.exports.routes = {
     'get /rest/api/logout': {
         controller    : 'user',
         action        : 'logout'
+    },
+
+    /*
+     * Permissions controller
+     */
+    'post /rest/api/permission/save':{
+        controller    : 'permission',
+        action        : 'save'
     }
-    
-    
 };
  

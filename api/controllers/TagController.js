@@ -16,26 +16,24 @@
  */
 
 module.exports = {
-    
-    create: function(req, res) {
-	
-    },
 
-    destroy: function(req, res) {
-
-    },
-
-    find: function(req, res){
-        Tag.find().done(function(err, tags){
+    getTopTags: function(req, res){
+        var cnt;
+        if(req.query.count){
+            cnt = req.query.count;
+        }else{
+            cnt = 10;
+        }
+        Tag.query('select label from tag where id in (select "tagId" from tagphoto group by "tagId" order by count(*) desc limit '+cnt+')', function(err, tags) {
             if(tags){
-                res.json(tags);
+                res.json(tags.rows);
             }else{
-                res.json("No tags found.");
+                res.json([]);
             }
         });
-    },	
+    },
 
-  /**
+    /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to TagController)
    */

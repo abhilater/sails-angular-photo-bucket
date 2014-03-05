@@ -1,10 +1,12 @@
 <div id ="photoMainDiv" ng-controller="PhotoListCtrl"  ng-init="init()">
+   <pre>{{message}}</pre>
   <div class="bar">
 		<!-- These two buttons switch the layout variable,
 			 which causes the correct UL to be shown. -->
-		<a class="list-icon" ng-class="{active: layout == 'list'}" ng-click="layout = 'list'"></a>
-		<a class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="layout = 'grid'"></a>
-		<a class="folder-icon" ng-class="{active: listingId == null}" ng-click="listingId=null;init()"></a>
+		<a class="list-icon" ng-class="{active: layout == 'list'}" ng-click="layout = 'list'"><font color="white">List</font></a>&nbsp;&nbsp;
+		<a class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="layout = 'grid'"><font color="white">Grid</font></a>&nbsp;&nbsp;
+		<a class="folder-icon" ng-class="{active: listingId == null}" ng-click="listingId=null;init()"><font color="white">Listing</font></a>&nbsp;&nbsp;
+        <a href="/rest/api/logout"><font color="white">Logout</font></a>
 	</div>
     <div ng-show="listingId">
         <input type="file" ng-file-select="onFileSelect($files)" multiple>
@@ -59,7 +61,7 @@
             <div class="col-lg-3" style="text-align: left">
                 <p class="tags">Tags: {{photoDialogPhoto.tags.toString()}}</p>
                 <p class="likes">{{photoDialogPhoto.likes}} {{ photoDialogPhoto.likes > 1 ? 'likes':'like' }}</p>
-                <!--<input type="text" id = "modalTag" ui-select2="select2Options" ng-model="photoDialogPhoto.tags1" class="tagtext" style="visibility: hidden" > -->
+                <!--<input type="text" id = "modalTag" ui-select2="select2Options" ng-model="photoDialogPhoto.tags" class="tagtext" style="visibility: hidden" >-->
                 <p><a href="#" ng-click="doLike(photoDialogPhoto)">Like</a>
                     <a href="#" class="saveTags">Save</a><input type="hidden" value="{{photoDialogPhoto}}" class="photoIdHidden" id = "modalTagHidden">
                 </p>
@@ -83,6 +85,8 @@
         });
         jQuery('#photoMainDiv').on('click', '.saveTags', function(e){
             angular.element('#photoMainDiv').scope().applyTags(jQuery(this).siblings('.photoIdHidden').val());
+            jQuery('.select2-container').css('visibility', 'hidden');
+            jQuery('.tags').show();
         });
         jQuery('#photoMainDiv').click(function(e){
             //console.log('1Inside javascript');

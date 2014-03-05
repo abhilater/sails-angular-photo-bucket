@@ -1,7 +1,7 @@
 'use strict';
 var photoControllers = angular.module('photoControllers', []);
 
-photoControllers.controller('PhotoListCtrl', ['$scope','$upload', 'Photo','Listing', function($scope,$upload, Photo, Listing) {
+photoControllers.controller('PhotoListCtrl', ['$scope','$upload','$http', 'Photo','Listing', function($scope,$upload,$http, Photo, Listing) {
 	 
 	  console.log('Inside Photo controller');
 	  $scope.message = '';
@@ -13,12 +13,25 @@ photoControllers.controller('PhotoListCtrl', ['$scope','$upload', 'Photo','Listi
       $scope.photoDialogPhoto = null;
 
 
+
     $scope.select2Options = {
         multiple: true,
         simple_tags: true,
         width:'300px',
-        tags: [{id:1, text:'tag6'}, {id:2, text:'tag7'}, {id:3, text:'tag8'}, {id:4, text:'tag9'}]  // Can be empty list.
+        tags: [] // Can be empty list.
     };
+
+    $http
+        .get('/rest/api/tag/top?count=10')
+        .success(function (data, status, header, config) {
+            for(var d in data){
+                $scope.select2Options.tags.push(data[d].label);
+            }
+
+        })
+        .error(function (data, status, headers, config) {
+            $scope.message = 'Error: Could not top tags';
+        });
 
      // handler for the for photo page initialization
 	  $scope.init = function() {
@@ -26,20 +39,18 @@ photoControllers.controller('PhotoListCtrl', ['$scope','$upload', 'Photo','Listi
 		if ($scope.listingId) {
 			$scope.photos = Photo.query({
 				id : $scope.listingId
-			}, function(data, err) {
-				if (err) {
-					$scope.message = 'Error fetching data';
-				} else {
-					$scope.photos = data;
-				}
-			});
+			}, function(data) {
+				 $scope.photos = data;
+
+			}, function(errorResult) {
+                $scope.message  = "Some error occurred getting photos!";
+                if(errorResult.status === 403) {
+                    $scope.message += ": Permission Denied"
+                }});
 		} else {
-			$scope.listings = Listing.query(function(data, err) {
-				if (err) {
-					$scope.message = 'Error fetching data';
-				} else {
-					$scope.listings = data;
-				}
+			$scope.listings = Listing.query(function(data) {
+				$scope.listings = data;
+
 			});
 		}
 	};
@@ -47,9 +58,9 @@ photoControllers.controller('PhotoListCtrl', ['$scope','$upload', 'Photo','Listi
 
 
     $scope.doLike = function(photo) {
-        Photo.like({id: photo.id}, {}, function(){
+        Photo.like({id: photo.id}, {}, function(successResult){
 
-            console.log('Successfull updated likes');
+            console.log('Successfully updated likes');
             photo.likes = photo.likes +1;
 
         });
@@ -63,13 +74,13 @@ photoControllers.controller('PhotoListCtrl', ['$scope','$upload', 'Photo','Listi
        console.log('Photo is '+ photoObj);
        var tags = {'tags':photoObj.tags};
        console.log('Tags sent: '+JSON.stringify(tags));
-       Photo.tag({id: photoObj.id}, tags, function(resp, err){
-           if (err) {
-               $scope.message = 'Error updating tags';
-           } else {
-               console.log("Message: "+resp);
-           }
-       });
+       Photo.tag({id: photoObj.id}, tags, function(successResult){
+               $scope.message = "Successfully saved!";
+       }, function(errorResult) {
+           $scope.message  = "Some error occurred saving tags!";
+           if(errorResult.status === 403) {
+               $scope.message += ": Permission Denied"
+           }});
     };
 
 
@@ -90,50 +101,16 @@ photoControllers.controller('PhotoListCtrl', ['$scope','$upload', 'Photo','Listi
             //formDataAppender: function(formData, key, val){} //#40#issuecomment-28612000
         }).progress(function(evt) {
                 console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+                $scope.message = 'percent: ' + parseInt(100.0 * evt.loaded / evt.total);
             }).success(function(data, status, headers, config) {
                 // file is uploaded successfully
                 console.log(data);
+                $scope.message = data;
             });
         //.error(...)
         //.then(success, error, progress);
         // $scope.upload = $upload.upload({...}) alternative way of uploading, sends the the file content directly with the same content-type of the file. Could be used to upload files to CouchDB, imgur, etc... for HTML5 FileReader browsers.
     };
-
-    /*// handler for the upload progress
-	$scope.progress = function(percentDone) {
-          console.log("progress: " + percentDone + "%");
-    };
-
-    // handler for the upload completion
-    $scope.done = function(files, data) {
-          console.log("upload complete");
-          console.log("data: " + JSON.stringify(data));
-          writeFiles(files);
-    };
-
-    // handlre for the sending of uoload data
-    $scope.getData = function(files) { 
-    	console.log('Inside get files');
-    	//this data will be sent to the server with the files
-    	// create an array of filenames to send to the server
-    	//console.log(JSON.stringify(files));
-        return {listingId:$scope.listingId, isPrivate:false};
-    };
-
-    // error handler for upload
-    $scope.error = function(files, type, msg) {
-          console.log("Upload error: " + msg);
-          console.log("Error type:" + type);
-          writeFiles(files);
-    }
-
-    function writeFiles(files) 
-    {
-          console.log('Files')
-          for (var i = 0; i < files.length; i++) {
-                console.log('\t' + files[i].name);
-          }
-    }*/
 	  
 	}]);
 
@@ -170,3 +147,119 @@ photoControllers.controller('LoginCtrl', ['$scope','$http', '$cookies', function
 		  };
 	  
 	}]);
+
+photoControllers.controller('AdminCtrl', ['$scope','$http', function($scope, $http) {
+    console.log('Inside Admin controller');
+    $scope.listings = [];
+    $scope.roles = [];
+    $scope.permissionsMap = {};
+
+
+    $http
+        .get('/listing')
+        .success(function (data, status, header, config) {
+            $scope.listings = data;
+        })
+        .error(function (data, status, headers, config) {
+            $scope.message = 'Error: Could not fetch listings';
+        });
+    $http
+        .get('/role')
+        .success(function (data, status, header, config) {
+            $scope.roles = data;
+        })
+        .error(function (data, status, headers, config) {
+            $scope.message = 'Error: Could not fetch roles';
+        });
+    $http
+        .get('/permission')
+        .success(function (data, status, header, config) {
+        createPermissionsMapFromPermissions(data);
+        })
+        .error(function (data, status, headers, config) {
+            $scope.message = 'Error: Could not fetch permissions';
+        });
+
+    $scope.save = function(){
+        var permissionsList = [];
+        for(var l in $scope.listings){
+            var ll = $scope.listings[l];
+            //console.log(ll);
+            for(var r in $scope.roles){
+                var rr = $scope.roles[r];
+                if($scope.permissionsMap[ll.id][rr.name]){
+                    permissionsList.push( $scope.permissionsMap[ll.id][rr.name]);
+                }
+            }
+        }
+        $http
+            .post('/rest/api/permission/save', {data: permissionsList})
+            .success(function (data, status, header, config) {
+                $scope.message = 'Successfully updated permissions! ';
+                $http
+                    .get('/permission')
+                    .success(function (data, status, header, config) {
+                        createPermissionsMapFromPermissions(data);
+                    })
+                    .error(function (data, status, headers, config) {
+                        $scope.message = 'Error: Could not fetch permissions';
+                    });
+            })
+            .error(function (data, status, headers, config) {
+                $scope.message = 'Error: Updating permissions! ';
+            });
+
+    }
+
+    function createPermissionsMapFromPermissions(data){
+        $scope.permissionsMap = {};
+        if(data){
+            //console.log(data);
+            for(var d in data){
+                //console.log(data);
+                var role = data[d]["role"];
+                //console.log('Data index: '+d);
+                if(!$scope.permissionsMap[data[d].itemId]){
+                    $scope.permissionsMap[data[d].itemId] = {};
+                }
+
+                $scope.permissionsMap[data[d].itemId][role] = data[d];
+
+            }
+            // create new mappings for listing ids
+            for(var l in $scope.listings){
+                var ll = $scope.listings[l];
+                //console.log(ll);
+                if(!$scope.permissionsMap[ll.id]){
+                    console.log('Inside creating mapping: ');
+                    $scope.permissionsMap[ll.id] = {};
+                }
+            }
+            // create new mappings for roles
+            for(var l in $scope.listings){
+                var ll = $scope.listings[l];
+                //console.log(ll);
+                for(var r in $scope.roles){
+                    var rr = $scope.roles[r];
+                    var mapping = {
+                        role: rr.name,
+                        itemType : 'listing',
+                        itemId : ll.id,
+                        read : false,
+                        write : false,
+                        destroy: false,
+                        newRecord: true
+                    };
+                    //console.log('First: '+': '+ll.id+' : '+$scope.permissionsMap[ll.id]);
+                    //console.log('Second: '+!$scope.permissionsMap[ll.id][rr.name]);
+                    if($scope.permissionsMap[ll.id] && !$scope.permissionsMap[ll.id][rr.name]){
+
+                        $scope.permissionsMap[ll.id][rr.name] = mapping;
+                    }
+                }
+            }
+        }
+    }
+
+
+}]);

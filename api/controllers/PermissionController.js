@@ -16,9 +16,51 @@
  */
 
 module.exports = {
-    
-  
 
+
+    save: function(req, res) {
+        var list = req.body.data;
+        var count = 0;
+        if(list){
+            count = list.length;
+            list.forEach(function(permission){
+                if(permission.newRecord){
+                    delete permission['newRecord'];
+                    Permission.create(permission).done(function(err) {
+                        count--;
+                        if (err) {
+                            res.json(err);
+                        } else {
+                            console.log("One permission created");
+                        }
+                        if(count == 0) res.json("All permissions updated");
+                    });
+                }else{
+                    Permission.update({
+                        itemId: permission.itemId,
+                        itemType: permission.itemType,
+                        role: permission.role
+                    },{
+                        read: permission.read,
+                        write: permission.write,
+                        destroy: permission.destroy
+                    }, function(err, permissions) {
+                        // Error handling
+                        count--;
+                        if (err) {
+                            res.json(err);
+                            // Updated users successfully!
+                        } else {
+                            console.log("Permission updated:", permissions);
+                        }
+                        if(count == 0) res.json("All permissions updated");
+                    });
+                }
+            });
+        }
+
+
+    },
 
   /**
    * Overrides for the settings in `config/controllers.js`

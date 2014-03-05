@@ -1,0 +1,31 @@
+<div ng-controller="AdminCtrl" id="adminDiv">
+
+   <pre> {{message}}</pre>
+    <ul>
+
+        <li ng-repeat="l in listings">
+
+            <div class="row" style="text-align: left; margin-left: 10px">
+                <div class="col-lg-3">{{l.name}}</div>
+                <div class="col-lg-6">
+                    <ul>
+                        <li ng-repeat="r in roles" style="list-style: none">
+                            <div class="col-lg-4">{{r.name}}</div>
+                              <div  class="col-lg-8">
+
+
+                               <input type="checkbox" ng-model="permissionsMap[l.id][r.name].read">Read
+                                <input type="checkbox" ng-model="permissionsMap[l.id][r.name].write">Write
+                                <input type="checkbox" ng-model="permissionsMap[l.id][r.name].destroy">Delete
+                              </div>
+                        </li>
+                    </ul></div>
+
+            </div>
+
+        </li>
+
+    </ul>
+    <div style="float: left; margin-left: 20px;"><button ng-click="save()">Save</button></div>
+ </div>
+
