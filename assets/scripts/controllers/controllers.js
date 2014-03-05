@@ -127,9 +127,11 @@ photoControllers.controller('LoginCtrl', ['$scope','$http', '$cookies', function
 	      .post('/rest/api/login', $scope.userCreds)
 	      .success(function (data, status, header, config) {
 	        $scope.message = 'Welcome ';
+
 	        $scope.user = data;
 	      })
 	      .error(function (data, status, headers, config) {
+            console.log('Status: '+status);
 	        $scope.message = 'Error: Invalid user or password';
 	      });
 	  };
