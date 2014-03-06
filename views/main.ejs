@@ -15,7 +15,7 @@
 	<ul ng-show="listingId && layout == 'grid'" class="grid">
 		<!-- A view with big photos and no text -->
 		<li ng-repeat="p in photos">
-			<a href="#" ng-click="$parent.photoDialogShown= true; $parent.photoDialogPhoto = p"><img ng-src="{{p.thumbPath}}" /></a>
+			<a href="#" ng-click="$parent.photoDialogShown= true; $parent.selectedIndex = $index"><img ng-src="{{p.thumbPath}}" /></a>
 		</li>
 	</ul>
 
@@ -23,7 +23,7 @@
 
 		<li ng-repeat="p in photos">
             <div>
-			    <a href="#" ng-click="$parent.photoDialogShown= true; $parent.photoDialogPhoto = p"><img ng-src="{{p.thumbPath}}" /></a>
+			    <a href="#" ng-click="$parent.photoDialogShown= true; $parent.selectedIndex = $index"><img ng-src="{{p.thumbPath}}" /></a>
 
                 <p class="tags"> <span style="color: #389dc1">Edit Tags</span> {{p.tags.toString()}}</p>
 
@@ -56,14 +56,14 @@
     <modal-dialog show='photoDialogShown' height='80%' width='80%'>
 
             <div class="col-lg-9">
-                <img ng-src="{{photoDialogPhoto.filePath}}" width="80%"/>
+                <img ng-src="{{photos[selectedIndex].filePath}}" width="80%"/>
             </div>
             <div class="col-lg-3" style="text-align: left">
-                <p class="tags">Tags: {{photoDialogPhoto.tags.toString()}}</p>
-                <p class="likes">{{photoDialogPhoto.likes}} {{ photoDialogPhoto.likes > 1 ? 'likes':'like' }}</p>
-                <!--<input type="text" id = "modalTag" ui-select2="select2Options" ng-model="photoDialogPhoto.tags" class="tagtext" style="visibility: hidden" >-->
-                <p><a href="#" ng-click="doLike(photoDialogPhoto)">Like</a>
-                    <a href="#" class="saveTags">Save</a><input type="hidden" value="{{photoDialogPhoto}}" class="photoIdHidden" id = "modalTagHidden">
+                <p class="tags">Tags: {{photos[selectedIndex].tags.toString()}}</p>
+                <p class="likes">{{photos[selectedIndex].likes}} {{ photos[selectedIndex].likes > 1 ? 'likes':'like' }}</p>
+                <input type="text" id = "modalTag" ui-select2="select2Options" ng-model="photos[selectedIndex].tags" class="tagtext" style="visibility: hidden" >
+                <p><a href="#" ng-click="doLike(photos[selectedIndex])">Like</a>
+                    <a href="#" class="saveTags">Save</a><input type="hidden" value="{{photos[selectedIndex]}}" class="photoIdHidden" id = "modalTagHidden">
                 </p>
             </div>
     </modal-dialog>

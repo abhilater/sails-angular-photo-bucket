@@ -10,7 +10,7 @@ photoControllers.controller('PhotoListCtrl', ['$scope','$upload','$http', 'Photo
       $scope.photoMap = {};
 	  $scope.listingId = null;
       $scope.photoDialogShown = false;
-      $scope.photoDialogPhoto = null;
+      $scope.selectedIndex = null;
 
 
 
